@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+
+{% block page_container %}
+    <div class="wrap-left">
+        <!-- 想传文件或图片，需把表单的编码方式改下,才能传多媒体之类的东西 -->
+        <form method="post" enctype="multipart/form-data">{% csrf_token %}  <!-- action不需要写，表示提交到当前url -->
+
+            {{ article_form }}
+            <input type="submit" value="提交" class="btn btn-success pull-right"/>
+        </form>
+        <!-- 上传文件 -->
+        <form method="post" action="{% url 'file_upload' %}" enctype="multipart/form-data">{% csrf_token %}
+            <input name="filename" type="file" />
+            <input type="submit" value="上传"/>
+        </form>
+
+    </div>
+
+    <div class="wrap-right">
+        right
+    </div>
+
+    <div class="clear-both"></div>  <!-- 清除浮动 -->
+
+
+{% endblock %}
+
+{% block bottom-js %}
+    <!-- 导入ckeditor.js -->
+    <script src="/static/plugins/ckeditor_4.6.2_full/ckeditor/ckeditor.js"></script>
+    <script type="text/javascript">
+        CKEDITOR.replace('id_content');  //替换前面的form表单的textarea,id_content为它的ID,id为modelform自己封装好的
+    </script>
+
+{% endblock %}

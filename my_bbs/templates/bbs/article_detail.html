@@ -1,0 +1,152 @@
+{% extends "base.html" %}
+{% load img_tag %}
+
+
+{% block page_container %}
+
+    <div class="wrap-left">
+        <div class="article-big-title">
+            {{ article_obj.title }}
+        </div>
+        <div class="article-title-brief">
+            <span>作者:{{ article_obj.author.name }}</span>
+            <span>{{ article_obj.pub_date }}</span>
+            <span>{%  filter_comment article_obj as comments %}</span>
+            <!-- 评论和点赞的样式是从bootstrap组件搞来的 -->
+            <span class="glyphicon glyphicon-comment" aria-hidden="true"></span>
+            <span>{{ comments.comment_count }}</span>
+            <span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span>
+            <span>{{ comments.thumb_count }}</span>
+        </div>
+        <div>
+            <!-- 默认会溢出，这里加100%是为了防止图片过大，溢出div -->
+            <img class="article-big-head-img" src="/static/{{ article_obj.head_img|truncate_url }}">
+        </div>
+        <div class="article-content">
+            <!-- 内置标签，渲染html字符串 -->
+            {{ article_obj.content|safe }}
+        </div>
+
+        <div class="comment-box">
+            {% if request.user.is_authenticated %}
+                <div class="new-comment-box">
+                    <textarea class="form-control" rows="3"></textarea>
+                    <button type="button" style="margin-top: 10px;" class="btn btn-success pull-right">提交</button>
+                    <div class="clear-both"></div>
+                </div>
+
+            {% else %}
+                <div class="jumbotron">
+                    <h4 class="text-center"><a href="{% url 'login' %}?next={{ request.path }}" class="btn-link">登陆</a>后评论</h4>
+
+                </div>
+            {% endif %}
+
+
+
+            <div class="comment_list">  <!-- 放评论的div -->
+
+            </div>
+        </div>
+        <!-- 上面的提交button应该有bootstrap写的浮动样式,所以下面清除浮动带来的布局影响 -->
+
+
+
+
+
+    </div>
+
+    <div class="wrap-right">
+        right
+    </div>
+
+    <div class="clear-both"></div>  <!-- 清除浮动 -->
+
+
+{% endblock %}
+
+
+{% block bottom-js %}
+    <script>
+        function GetComment() {
+            $.get("{% url 'get_comments' article_obj.id %}", 
+                function (callback) {  // 回调函数，callback为请求获得的字符串
+                    //console.log(callback);
+                    $(".comment_list").html(callback);
+
+                    //添加评论
+                    $(".add-comment").click(function () {
+                        // 获得对其进行评论的id.eg:我现在要对评论A进行评论，首先我得先获取评论A的id
+                        var comment_id = $(this).attr("comment-id");
+                        console.log("comment_id" + comment_id);
+                        //clone(true, true把绑定的事件也克隆过来，
+                        var new_comment_box_div = $(".new-comment-box").clone(true);  //克隆一份评论的div
+
+                        $(".new-comment-box").remove();  //删除之前是评论div
+                        $(this).parent().append(new_comment_box_div);  //添加新的评论div
+                    });
+
+                });  // 结束get请求
+
+        }
+
+        function get_csrf() {
+            return $("input[name='csrfmiddlewaretoken']").val();
+        }
+    
+        {# 文档树加载完毕 #}
+        $(document).ready(function () {
+            GetComment();  //页面加载后调用函数，显示评论
+            //GetComment()是ajax方法，异步不阻塞，所以其实评论未获取，下面也就无法对评论添加事件。
+            //解决方法是把事件放在GetComment()函数中，当获取评论后再添加事件
+{#            //添加评论#}
+{#            $(".add-comment").click(function () {#}
+{#                // 获得对其进行评论的id.eg:我现在要对评论A进行评论，首先我得先获取评论A的id#}
+{#                var comment_id = $(this).attr("comment-id");#}
+{#                console.log("comment_id" + comment_id);#}
+{#            });#}
+
+           $(".comment-box button").click(function () {
+               var comment_text = $(".comment-box textarea").val();
+               if (comment_text.trim().length < 5){
+                   alert("评论字数不能少于5个字")
+               }else {
+                   //向后台发起post请求
+                   //获得父评论的前一个span的id
+                   var parent_comment_id = $(this).parent().prev().attr("comment-id");
+
+                   $.post("{% url 'post_comment' %}",  //请求的url
+                           {  //发送的参数
+                               "comment_type": 1,  //1为评论，2为点赞
+                               "comment_content":comment_text.trim(),  //评论内容
+                               article_id: "{{ article_obj.id }}",  //文章id
+                               parent_comment: parent_comment_id,  //父级评论id
+                               "csrfmiddlewaretoken": get_csrf()
+                           },
+                           function (callback) {  //callback为后端返回的数据
+                                console.log(callback);
+                               if (callback == "post-comment-success"){
+                                    // alert("评论成功")
+                                   //克隆一份评论的div, 防止一提交评论，评论框消失
+                                   var new_comment_box_div = $(".new-comment-box").clone(true);
+                                   //在刷新评论之前，把评论框再放回文章底部
+                                   $(".comment_list").before(new_comment_box_div);
+                                   $(".new-comment-box textarea").val("");
+                                   GetComment();  // 评论成功后显示评论
+                               }
+                           }); //结束参数的发送
+
+               }
+
+           });  // 点击事件结束
+        });
+
+    </script>
+
+{% endblock %}
+
+
+
+
+
+

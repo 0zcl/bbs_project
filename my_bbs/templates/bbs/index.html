@@ -1,0 +1,89 @@
+{% extends "base.html" %}
+{% load img_tag %}
+
+
+{% block page_container %}
+    <div class="wrap-left">
+        <!-- 有新文章，便提醒 -->
+        <div class="notify-new-article hide">
+            <a href="{{ request.path }}">有<span></span>条新消息</a>
+        </div>
+
+        <!-- reversed反转，最新发布的div在最前面 -->
+        {% for article in article_list reversed %}
+            <div  article_id="{{ article.id }}" class="article-box row">
+                <div class="article-head-img col-md-4">
+                    <!-- 自定义模版 -->
+                    <img src="/static/{{ article.head_img|truncate_url }}">
+                </div>
+                <div class="article-brief col-md-8">
+                    <a class="article-title" href="{% url 'article_detail' article.id %}">{{ article.title }}</a>
+                    <div>
+                        <span>{{ article.author }}</span>
+                        <span>{{ article.pub_date }}</span>
+                        <!-- 通过文章反向关联查出评论数，但是查出的数量，是评论+点赞数 -->
+                        <!-- <span>{{ article.comment_set.select_related.count }}</span> -->
+                        <!-- article是传给filter_comment方法的参数,filter_comment方法返回的字典赋值给comments -->
+                        <span>{%  filter_comment article as comments %}</span>
+                        <!-- 评论和点赞的样式是从bootstrap组件搞来的 -->
+                        <span class="glyphicon glyphicon-comment" aria-hidden="true"></span>
+                        <span>{{ comments.comment_count }}</span>
+                        <span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span>
+                        <span>{{ comments.thumb_count }}</span>
+                    </div>
+                    <div class="article-brief-text">
+                        <span>{{ article.brief }}</span>
+                    </div>
+                </div>
+            </div>
+            <hr/>
+        {% endfor %}
+    </div>
+
+    <div class="wrap-right">
+        right
+    </div>
+
+    <div class="clear-both"></div>  <!-- 清除浮动 -->
+
+
+{% endblock %}
+
+
+{% block bottom-js %}
+    <!-- 定时器 -->
+    <script>
+        $(document).ready(function () {
+            setInterval(function () {  //定时器方法
+                //获得最新文章的ID eg:$(".wrap-left").children()[1].attr("article_id") 是html元素，无attr方法
+                //var latest_article_id = $(".wrap-left").children().first().next().attr("article_id");
+                var latest_article_id = $( $(".wrap-left").children()[1] ).attr("article_id");
+                console.log(latest_article_id);
+                //通过ajax发送最新文章的ID到后台
+                $.get("{% url 'get_latest_article_id' %}",
+                    {latest_id: latest_article_id},
+                    function (callback) {  //回调函数
+                        // string
+                        console.log(callback, typeof callback);  //{"new_article_count": 0}是一个字典形式
+                        var date_dic = JSON.parse(callback);
+                        console.log(date_dic, typeof date_dic);
+                        console.log(date_dic["new_article_count"]);
+
+                        if (date_dic["new_article_count"] > 0){
+                            //无hide样式则添加，有则删除
+                            //$(".notify-new-article").toggleClass("hide");  //消息提醒会隔一段时间出现or消失
+                            if ($(".notify-new-article").hasClass("hide")){  //如果已经隐藏,使它显示
+                                $(".notify-new-article").removeClass("hide")
+                            }
+                            //已显示消息提醒的则更新消息数量
+                            $(".notify-new-article span").html(date_dic["new_article_count"]);
+                        }
+
+                    })
+
+            }, 3000);  //每3秒执行一次定时器
+
+        })
+    </script>
+
+{% endblock %}

@@ -1,0 +1,104 @@
+
+.page-container{
+    border: 1px dashed darkgoldenrod;
+    padding-left: 100px;
+    padding-right: 100px;
+}
+
+.wrap-left{
+    width: 70%;
+    float: left;
+}
+
+.wrap-right{
+    width: 30%;
+    float: left;
+    background-color: yellowgreen;
+}
+
+/* 清除浮动 */
+.clear-both{
+    clear: both;
+}
+
+.footer{
+    margin-top: 20px;
+    height: 100px;
+    background-color: yellow;
+}
+
+.article-head-img img{
+    height: 165px;
+    width: 220px;
+}
+
+.article-box{
+    margin-bottom: 25px;
+}
+
+.article-brief{
+    margin-left: -40px;
+}
+
+.article-title{
+    font-size: 20px;
+}
+
+a{
+    color: #333;
+}
+
+/* :hover选择鼠标指针浮动在其上的元素，并设置其样式*/
+a:hover{
+    color: #2fcddf;
+    text-decoration: none;
+}
+
+body {
+    color: #333;
+    font-family: Arial,"微软雅黑","Microsoft yahei","Hiragino Sans GB",
+    "冬青黑体简体中文 w3","Microsoft Yahei","Hiragino Sans GB",
+    "冬青黑体简体中文 w3",STXihei,"华文细黑",SimSun,"宋体",Heiti,"黑体",sans-serif;
+}
+
+.article-brief-text, .article-title-brief{
+    margin-top: 10px;
+    font-size: 14px;
+    color: #999;
+    line-height: 24px;
+}
+
+.article-big-title{
+    font-size: 30px;
+}
+
+.article-big-head-img{
+    margin-top: 20px;
+    margin-bottom: 20px;
+    width: 100%;
+}
+
+.article-content{
+    font-size: 16px;
+    line-height: 30px;
+}
+
+.comment-node{
+    border: 1px solid skyblue;
+    margin: 3px;
+    padding: 5px;
+}
+
+.root-comment{
+    border: 1px solid sandybrown;
+    margin: 3px;
+    padding: 5px;
+}
+
+.notify-new-article{
+    text-align: center;
+    background-color: #ffc91f;
+    padding: 10px;
+}
+
+
