@@ -16,7 +16,7 @@
             <span class="glyphicon glyphicon-comment" aria-hidden="true"></span>
             <span>{{ comments.comment_count }}</span>
             <span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span>
-            <span>{{ comments.thumb_count }}</span>
+            <span class="thumb-count">{{ comments.thumb_count }}</span>
         </div>
         <div>
             <!-- 默认会溢出，这里加100%是为了防止图片过大，溢出div -->
@@ -25,6 +25,13 @@
         <div class="article-content">
             <!-- 内置标签，渲染html字符串 -->
             {{ article_obj.content|safe }}
+        </div>
+
+        <div>  <!-- 用户可以点赞 -->
+            <a class="thumb-up">
+                点赞<span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span>
+                <span class="thumb-count">{{ comments.thumb_count }}</span>
+            </a>
         </div>
 
         <div class="comment-box">
@@ -38,7 +45,6 @@
             {% else %}
                 <div class="jumbotron">
                     <h4 class="text-center"><a href="{% url 'login' %}?next={{ request.path }}" class="btn-link">登陆</a>后评论</h4>
-
                 </div>
             {% endif %}
 
@@ -49,10 +55,6 @@
             </div>
         </div>
         <!-- 上面的提交button应该有bootstrap写的浮动样式,所以下面清除浮动带来的布局影响 -->
-
-
-
-
 
     </div>
 
@@ -69,12 +71,12 @@
 {% block bottom-js %}
     <script>
         function GetComment() {
-            $.get("{% url 'get_comments' article_obj.id %}", 
+            $.get("{% url 'get_comments' article_obj.id %}",
                 function (callback) {  // 回调函数，callback为请求获得的字符串
                     //console.log(callback);
                     $(".comment_list").html(callback);
 
-                    //添加评论
+                    //添加评论； add-comment样式为后台定义好，返回给前端的
                     $(".add-comment").click(function () {
                         // 获得对其进行评论的id.eg:我现在要对评论A进行评论，首先我得先获取评论A的id
                         var comment_id = $(this).attr("comment-id");
@@ -97,8 +99,8 @@
         {# 文档树加载完毕 #}
         $(document).ready(function () {
             GetComment();  //页面加载后调用函数，显示评论
-            //GetComment()是ajax方法，异步不阻塞，所以其实评论未获取，下面也就无法对评论添加事件。
-            //解决方法是把事件放在GetComment()函数中，当获取评论后再添加事件
+            // GetComment()是ajax方法，异步不阻塞，所以其实评论未获取，下面也就无法对评论添加事件。
+            // 解决方法是把事件放在GetComment()函数中，当获取评论后再添加事件
 {#            //添加评论#}
 {#            $(".add-comment").click(function () {#}
 {#                // 获得对其进行评论的id.eg:我现在要对评论A进行评论，首先我得先获取评论A的id#}
@@ -106,13 +108,13 @@
 {#                console.log("comment_id" + comment_id);#}
 {#            });#}
 
-           $(".comment-box button").click(function () {
-               var comment_text = $(".comment-box textarea").val();
+           $(".new-comment-box button").click(function () {
+               var comment_text = $(".new-comment-box textarea").val();
                if (comment_text.trim().length < 5){
-                   alert("评论字数不能少于5个字")
+                   alert("评论字数不能少于5个字");
                }else {
                    //向后台发起post请求
-                   //获得父评论的前一个span的id
+                   //获得父评论的id
                    var parent_comment_id = $(this).parent().prev().attr("comment-id");
 
                    $.post("{% url 'post_comment' %}",  //请求的url
@@ -127,18 +129,41 @@
                                 console.log(callback);
                                if (callback == "post-comment-success"){
                                     // alert("评论成功")
-                                   //克隆一份评论的div, 防止一提交评论，评论框消失
+                                   // 克隆一份评论的div, 防止一提交评论，评论框消失
                                    var new_comment_box_div = $(".new-comment-box").clone(true);
-                                   //在刷新评论之前，把评论框再放回文章底部
+                                   $(".new-comment-box").remove();
+                                   // 在刷新评论之前，把评论框再放回文章底部
+                                   // 在有comment_list属性的元素之前插入内容。
                                    $(".comment_list").before(new_comment_box_div);
                                    $(".new-comment-box textarea").val("");
                                    GetComment();  // 评论成功后显示评论
                                }
-                           }); //结束参数的发送
-
+                           }); // 结束参数的发送
                }
 
            });  // 点击事件结束
+
+            // 点赞后调用该方法
+            $(".thumb-up").click(function () {
+                $.post("{% url 'post_comment' %}",
+                    {  //发送的参数
+                        "comment_type": 2,  //1为评论，2为点赞
+                        article_id: "{{ article_obj.id }}",  //文章id
+                        "csrfmiddlewaretoken": get_csrf()
+                    },
+                    function (callback) {
+                        console.log(callback);
+                        if (callback == "post-comment-success"){  //如果点赞成功
+                            var thumb_count = $(".thumb-up .thumb-count").text();
+                            thumb_count = parseInt(thumb_count);  //字符型转化为int型
+                            thumb_count += 1;
+                            console.log(thumb_count);
+                            $(".thumb-count").html(thumb_count);
+                        }
+
+                    }
+                )
+            });
         });
 
     </script>

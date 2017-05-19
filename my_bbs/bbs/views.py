@@ -37,8 +37,15 @@ def acc_logout(request):
 def index(request):
     article_list = models.Article.objects.filter(publish_status="published")
     category_obj = models.Category.objects.get(position_index=1)
+    # 最新必布的文章
+    newest_article = models.Article.objects.all().order_by('-pub_date')[0]
+    # print(">>>>newest_article", newest_article)
+    newest_article_id = newest_article.id
+    print(">>>>找到最新文章的ID", newest_article_id)
+
     return render(request, "bbs/index.html", {"category_list": category_list,
                                               "article_list": article_list,
+                                              "newest_article_id": newest_article_id,
                                               "category_obj": category_obj})
 
 
@@ -78,7 +85,7 @@ def comment(request):
             comment_type = request.POST.get("comment_type"),
             parent_comment_id = request.POST.get("parent_comment") or None,
             comment_user_id = request.user.userprofile.id,
-            comment = request.POST.get("comment_content")
+            comment = request.POST.get("comment_content") or None,
         )
         new_comment_obj.save()  # 保存到数据库
         return HttpResponse("post-comment-success")
@@ -86,8 +93,9 @@ def comment(request):
 
 def get_comments(request, article_id):
     article_obj = models.Article.objects.get(id=article_id)
-    comment_tree = handle_comment.build_tree(article_obj.comment_set.select_related())
-    render_comment = handle_comment.render_comment_tree(comment_tree)  # render_comment为含html字符串
+    comment_tree = handle_comment.build_tree(article_obj.comment_set.select_related())  # 反向查询
+    print(">>>评论内容:", article_obj.comment_set.select_related())
+    render_comment = handle_comment.render_comment_tree(comment_tree)  # render_comment(字典形式)为含html字符串
     return HttpResponse(render_comment)
 
 

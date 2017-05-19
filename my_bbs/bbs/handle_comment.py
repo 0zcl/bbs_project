@@ -19,10 +19,11 @@ def add_node(tree_dic, comment):
 
 def build_tree(comment_set):
     # 将评论通过字典转化成树结构
-    print(">>>:", comment_set)
+    print("comment_set>>>:", comment_set)
     tree_dic = {}
     for comment in comment_set:
-        add_node(tree_dic, comment)
+        if comment.comment_type == 1:  # 当comment为点赞时，无需添加到评论树(评论内容才需要)
+            add_node(tree_dic, comment)
     return tree_dic
 
 
@@ -47,7 +48,7 @@ def render_comment_tree(tree_dic):
         ele = "<div class='root-comment'>" + k.comment \
               + "<span style='margin-left:20px'>%s</span>" % k.comment_date \
               + "<span style='margin-left:20px'>%s</span>" % k.comment_user \
-              + '<span comment-id="%s"' % k.id + 'class="pull-right glyphicon glyphicon-comment add-comment">'\
+              + '<span comment-id="%s"' % k.id + 'class="pull-right glyphicon glyphicon-comment add-comment">' \
               + "</div>"
 
         html += ele

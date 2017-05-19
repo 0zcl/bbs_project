@@ -8,7 +8,7 @@ class ArticleAdmin(admin.ModelAdmin):
 
 
 class CommentAdmin(admin.ModelAdmin):
-    list_display = ("article", "parent_comment", "comment_type",
+    list_display = ("id", "article", "parent_comment", "comment_type",
                     "comment", "comment_user", "comment_date")
 
 
