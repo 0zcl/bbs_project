@@ -3,7 +3,7 @@ from bbs import models
 # Register your models here.
 
 class ArticleAdmin(admin.ModelAdmin):
-    list_display = ("title", "brief", "category", "content", "author",
+    list_display = ("id", "title", "brief", "category", "content", "author",
                     "pub_date", "last_modify", "priority", "publish_status")
 
 

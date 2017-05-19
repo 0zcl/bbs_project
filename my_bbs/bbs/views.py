@@ -45,12 +45,20 @@ def index(request):
 def category(request, category_id):
     category_obj = models.Category.objects.get(id=category_id)
     if category_obj.position_index == 1:  # 用户访问首页
-        article_list = models.Article.objects.filter(publish_status="published")
+        article_list = models.Article.objects.all().order_by('pub_date')
     else:
         article_list = models.Article.objects.filter(category=category_id, publish_status="published")
+    # 最新必布的文章
+    newest_article = models.Article.objects.all().order_by('-pub_date')[0]
+    # print(">>>>newest_article", newest_article)
+    newest_article_id = newest_article.id
+    print(">>>>找到最新文章的ID", newest_article_id)
+
     return render(request, "bbs/index.html", {"category_list": category_list,
+                                              "article_list": article_list,
+                                              "newest_article_id": newest_article_id,
                                               "category_obj": category_obj,
-                                              "article_list": article_list})
+                                              })
 
 
 def article_detail(request, article_id):
@@ -130,6 +138,7 @@ def file_upload(request):
 def get_latest_article_id(request):
     latest_article_id = request.GET.get("latest_id")
     if latest_article_id:
+        # 找出数据库中新消息的数量
         new_article_count = models.Article.objects.filter(id__gt=latest_article_id).count()
         print(">>>>", new_article_count, type(new_article_count))
     else:  # 如果当前页面没有文章，则latest_article_id为空

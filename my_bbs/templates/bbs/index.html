@@ -5,13 +5,14 @@
 {% block page_container %}
     <div class="wrap-left">
         <!-- 有新文章，便提醒 -->
-        <div class="notify-new-article hide">
+        <div class="notify-new-article hide">  <!-- 将最新年文章的id存在这里的lasted_id -->
             <a href="{{ request.path }}">有<span></span>条新消息</a>
+
         </div>
 
         <!-- reversed反转，最新发布的div在最前面 -->
         {% for article in article_list reversed %}
-            <div  article_id="{{ article.id }}" class="article-box row">
+            <div class="article-box row">
                 <div class="article-head-img col-md-4">
                     <!-- 自定义模版 -->
                     <img src="/static/{{ article.head_img|truncate_url }}">
@@ -54,15 +55,21 @@
     <!-- 定时器 -->
     <script>
         $(document).ready(function () {
-            setInterval(function () {  //定时器方法
-                //获得最新文章的ID eg:$(".wrap-left").children()[1].attr("article_id") 是html元素，无attr方法
-                //var latest_article_id = $(".wrap-left").children().first().next().attr("article_id");
-                var latest_article_id = $( $(".wrap-left").children()[1] ).attr("article_id");
-                console.log(latest_article_id);
+
+            setInterval(function () {  // 定时器方法
+
+                // 获得最新文章的ID eg:$(".wrap-left").children()[1].attr("article_id") 是html元素，无attr方法
+                // var latest_article_id = $(".wrap-left").children().first().next().attr("article_id");
+
+                // 取到最新id; 外面再加一个$是为了将html元素转化为jquery对象，JQ对象才有attr属性
+                // var latest_article_id = $( $(".wrap-left").children()[1] ).attr("article_id");
+                // console.log(latest_article_id);
+
                 //通过ajax发送最新文章的ID到后台
                 $.get("{% url 'get_latest_article_id' %}",
-                    {latest_id: latest_article_id},
+                    {latest_id: {{ newest_article_id }}},  // 后台返回给前端的当前最新的ID
                     function (callback) {  //回调函数
+                        console.log({{ newest_article_id }});
                         // string
                         console.log(callback, typeof callback);  //{"new_article_count": 0}是一个字典形式
                         var date_dic = JSON.parse(callback);
@@ -71,7 +78,7 @@
 
                         if (date_dic["new_article_count"] > 0){
                             //无hide样式则添加，有则删除
-                            //$(".notify-new-article").toggleClass("hide");  //消息提醒会隔一段时间出现or消失
+                            //$(".notify-new-article").toggleClass("hide");  //出现问题: 消息提醒会隔一段时间出现or消失
                             if ($(".notify-new-article").hasClass("hide")){  //如果已经隐藏,使它显示
                                 $(".notify-new-article").removeClass("hide")
                             }
