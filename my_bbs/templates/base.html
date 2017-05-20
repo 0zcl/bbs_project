@@ -25,27 +25,41 @@
     <!-- Fixed navbar -->
     <nav class="navbar navbar-default navbar-fixed-top">
       <div class="container">
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <a class="navbar-brand" href="http://v3.bootcss.com/examples/navbar-fixed-top/#">Project name</a>
-        </div>
+{#        <div class="navbar-header">#}
+{#          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">#}
+{#            <span class="sr-only">Toggle navigation</span>#}
+{#            <span class="icon-bar"></span>#}
+{#            <span class="icon-bar"></span>#}
+{#            <span class="icon-bar"></span>#}
+{#          </button>#}
+{#            <div class="head-title">#}
+{#                <a class="navbar-brand head-title" href="/bbs">老司机新热榜</a>#}
+{##}
+{#            </div>#}
+{#        </div>#}
 
         <div id="navbar" class="navbar-collapse collapse">
 
-            {% for category in category_list %}
-              <ul class="nav navbar-nav">
-                {% if category.id == category_obj.id %}
-                    <li class="active"><a href="/bbs/category/{{ category.id }}">{{ category.name }}</a></li>
-                {% else %}
-                    <li class=""><a href="/bbs/category/{{ category.id }}">{{ category.name }}</a></li>
-                {% endif %}
-              </ul>
-            {% endfor %}
+            <div>
+                <a class="navbar-brand" href="/bbs">
+                    <img src="/static/images/logo.png">
+                </a>
+            </div>
+
+
+            <ul class="nav navbar-nav">
+                {% for category in category_list %}
+                    {% if category.id == category_obj.id %}
+                        <li class="active"><a href="/bbs/category/{{ category.id }}">{{ category.name }}</a></li>
+                    {% else %}
+                        <li class=""><a href="/bbs/category/{{ category.id }}">{{ category.name }}</a></li>
+                    {% endif %}
+                {% endfor %}
+
+                 <li class=""><a href="/webchat/">撩妹战区</a></li>
+            </ul>
+
+
 
           <ul class="nav navbar-nav navbar-right">
             <li class="active"><a href="{% url 'new_article' %}">发贴</a></li>

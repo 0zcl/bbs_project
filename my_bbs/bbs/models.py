@@ -66,7 +66,7 @@ class Category(models.Model):  # 版块(分类)表
     brief = models.CharField(max_length=255, null=True, blank=True)  # 简要介绍
     set_to_top_menu = models.BooleanField(default=False)  # 是否显示在界面
     position_index = models.SmallIntegerField()  # 版块的位置
-    admin = models.ManyToManyField("UserProfile", blank=True, null=True)  # 一个版块可有多个管理员，可不选择
+    admin = models.ManyToManyField("UserProfile", blank=True)  # 一个版块可有多个管理员，可不选择
 
     def __str__(self):
         return self.name
@@ -77,6 +77,10 @@ class UserProfile(models.Model):  # 用户表
     name = models.CharField(max_length=64)
     signature = models.CharField(max_length=255, blank=True, null=True)  # 个人签名，可以为空
     head_img = models.ImageField(height_field=150, width_field=150, blank=True, null=True)  # 头像，可以不传
+    # for web qq
+    # 一个用户可以有多个好友(自关联), 可以为空
+    # 你是我的好友，那我就是你的好友(django默认)，如:QQ ；你是我的粉丝，但我不是你是粉丝，可上openstack搜解决方案，如:webo
+    friends = models.ManyToManyField("self", related_name="my_friends", blank=True)
 
     def __str__(self):
         return self.name

@@ -14,6 +14,7 @@
     width: 30%;
     float: left;
     background-color: yellowgreen;
+
 }
 
 /* 清除浮动 */
@@ -101,4 +102,52 @@ body {
     padding: 10px;
 }
 
+.wrap-right .talk-place{
+    height: 300px;
+    background-color: antiquewhite;
+}
 
+/* css for webchat */
+.chat-container{
+    border: 2px solid #ffcf4d;
+    height: 500px;
+    width: 100%;
+}
+
+.left-chat-panel{
+    border: 2px solid royalblue;
+    height: 480px;
+    width: 30%;
+    float: left;
+}
+
+.right-chat-panel{
+    border: 2px solid #bebee1;
+    height: 480px;
+    width: 70%;
+    float: left;
+}
+
+.chat-box-title{
+    border: 2px solid #e1720f;
+    height: 5%;
+    width: 100%;
+}
+
+.chat-box-window{
+    border: 2px solid #77e1cf;
+    height: 70%;
+    width: 100%;
+}
+
+.chat-box-emoj{
+    border: 2px solid #f8ff89;
+    height: 5%;
+    width: 100%;
+}
+
+.chat-box-msg{
+    border: 2px solid #a3ffd3;
+    height: 20%;
+    width: 100%;
+}

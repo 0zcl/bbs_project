@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+
+{% block page_container %}
+
+    <div class="chat-container">
+        <div class="left-chat-panel">
+            left
+            <div class=""></div>
+        </div>
+        <div class="right-chat-panel">
+            <div class="chat-box-title">title</div>
+            <div class="chat-box-window">window</div>
+            <div class="chat-box-emoj">emoj</div>
+            <div class="chat-box-msg">
+                msg
+                <textarea id="msg"></textarea>
+                <button class="btn btn-success">发送消息</button>
+            </div>
+        </div>
+
+    </div>
+
+
+{% endblock %}
+
+
+{% block bottom-js %}
+
+    <script>
+        $(document).ready(function () {
+            $(".navbar-nav a[href='{{ request.path }}']").parent().addClass("active");
+        })
+    </script>
+
+{% endblock %}

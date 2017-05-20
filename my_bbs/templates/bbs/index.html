@@ -41,8 +41,17 @@
         {% endfor %}
     </div>
 
-    <div class="wrap-right">
-        right
+    <div class="wrap-right">  <!-- 界面右半部分 -->
+        <div style="height: 100px; background-color: #d0e9c6;">
+            right
+        </div>
+        <div class="talk-place">
+            talking home
+        </div>
+        <div style="background-color: #2aabd2; height: 300px;">
+            广告专区
+        </div>
+
     </div>
 
     <div class="clear-both"></div>  <!-- 清除浮动 -->
@@ -80,7 +89,7 @@
                             //无hide样式则添加，有则删除
                             //$(".notify-new-article").toggleClass("hide");  //出现问题: 消息提醒会隔一段时间出现or消失
                             if ($(".notify-new-article").hasClass("hide")){  //如果已经隐藏,使它显示
-                                $(".notify-new-article").removeClass("hide")
+                                $(".notify-new-article").removeClass("hide");
                             }
                             //已显示消息提醒的则更新消息数量
                             $(".notify-new-article span").html(date_dic["new_article_count"]);
