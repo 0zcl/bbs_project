@@ -6,19 +6,50 @@
     <div class="chat-container">
         <div class="left-chat-panel">
             left
-            <div class=""></div>
+            <div>
+
+                <!-- Nav tabs -->
+                <ul class="nav nav-tabs" role="tablist">
+                    <li role="presentation" class="active"><a href="#friends" role="tab" data-toggle="tab">好友</a></li>
+                    <li role="presentation"><a href="#group" role="tab" data-toggle="tab">群组</a></li>
+                </ul>
+
+                <!-- Tab panes -->
+                <div class="tab-content">
+
+                    <div role="tabpanel" class="tab-pane active" id="friends">
+                        <ul class="list-group">
+                            {% for friend in request.user.userprofile.friends.select_related %}
+                                <li contact-type="single" id="{{ friend.id }}" class="list-group-item"
+                                    onclick="OpenChatWindow(this)">
+                                    <span class="badge">14</span>
+                                    <span class="contact-name">{{ friend.name }}</span>
+                                </li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+
+                    <div role="tabpanel" class="tab-pane" id="group">
+                        ll
+                    </div>
+                </div>
+
+            </div>
+
         </div>
+
         <div class="right-chat-panel">
-            <div class="chat-box-title">title</div>
+
+            <div class="chat-box-title" contact-id="" contact-type="">title</div>
+
             <div class="chat-box-window">window</div>
             <div class="chat-box-emoj">emoj</div>
             <div class="chat-box-msg">
-                msg
                 <textarea id="msg"></textarea>
-                <button class="btn btn-success">发送消息</button>
+                <button class="btn btn-success">发送</button>
             </div>
         </div>
-
+        <div class="clear-both"></div>
     </div>
 
 
@@ -26,11 +57,125 @@
 
 
 {% block bottom-js %}
-
     <script>
+        // using js to get csrftoken
+        function getCookie(name) {
+            var cookieValue = null;
+            if (document.cookie && document.cookie !== '') {
+                var cookies = document.cookie.split(';');
+                for (var i = 0; i < cookies.length; i++) {
+                    var cookie = jQuery.trim(cookies[i]);
+                    // Does this cookie string begin with the name we want?
+                    if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                        cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                        break;
+                    }
+                }
+            }
+            return cookieValue;
+        }
+        var csrftoken = getCookie('csrftoken');
+        console.log(csrftoken);
+        // end js
+
+        function csrfSafeMethod(method) {
+            // these HTTP methods do not require CSRF protection
+            return (/^(GET|HEAD|OPTIONS|TRACE)$/.test(method));
+        }
+
+
         $(document).ready(function () {
+            // 在发送ajax之前设置csrf(set csrf before send ajax)
+            $.ajaxSetup({
+                beforeSend: function(xhr, settings) {
+                    if (!csrfSafeMethod(settings.type) && !this.crossDomain) {
+                        xhr.setRequestHeader("X-CSRFToken", csrftoken);
+                    }
+                }
+            });  // end set csrf
+            // 让聊天室版块高亮
             $(".navbar-nav a[href='{{ request.path }}']").parent().addClass("active");
-        })
+
+            $("body").delegate("textarea", "keydown", function (e) {  // e==event
+                if(e.which == 13){  // 按下键的数字(e.which);13是enter键的ASCII码
+                    var msg_text = $("textarea").val();
+                    if ($.trim(msg_text).length > 0){
+                        console.log(msg_text);
+                        // 发送消息给对方
+                        SendMsg(msg_text);
+                        // 将发送的信息打印到自己的window界面
+                        AddSendMsgIntoWindow(msg_text);
+                        $("textarea").val("");
+                    }else {
+                        alert("请输入要发送的消息")
+                    }
+
+                }
+            })
+
+        });
+
+        // 点击左侧界面的好友，触发事件，打开聊天界面
+        function OpenChatWindow(ele) {
+            console.log($(ele));
+            $(ele).addClass("active");  // 增加高亮
+            $(ele).siblings().removeClass("active");  // 将同级元素去除高亮属性
+            var contact_id = $(ele).attr("id");
+            var contact_type = $(ele).attr("contact-type");
+            var contact_name = $(ele).find(".contact-name").text();
+            console.log(contact_id);
+            console.log(contact_type);
+            console.log(contact_name);
+            var chat_box_title_content = "<span>正在和 " + contact_name + " 聊天</span>";
+            $(".chat-box-title").html(chat_box_title_content);
+            // 给标题框添加 通信对象的id,通信类型(群发或单独发)
+            $(".chat-box-title").attr("contact-id", contact_id);
+            $(".chat-box-title").attr("contact-type", contact_type);
+        }
+
+        function AddSendMsgIntoWindow(msg_text) {
+            var new_msg_ele = "<div class='msg-item'>" +
+                                "<span>" + "{{ request.user.userprofile.name }}" + "</span>" +
+                                "<span>" + new Date().toLocaleDateString() + "</span>" +
+                                "<div class='msg-text'>" + msg_text + "</div>" +
+                            "</div>";
+            $(".chat-box-window").append(new_msg_ele);
+
+            $(".chat-box-window").animate({
+                scrollTop: $(".chat-box-window")[0].scrollHeight  // 每隔0.5s 自动向下滚动
+            }, 500);
+            console.log($(".chat-box-window")[0]);
+        }
+        // 发送消息给好友或
+        function SendMsg(msg_text) {
+            var contact_id = $(".chat-box-title").attr("contact-id");
+            var contact_type = $(".chat-box-title").attr("contact-type");
+            if (contact_id && contact_type){
+                var msg_item = {
+                    "from": {{ request.user.userprofile.id }},
+                    "to": contact_id,
+                    "type": contact_type,
+                    "msg": msg_text
+                };
+                
+                $.post("{% url 'send_msg' %}",
+                    msg_item,
+                    function (callback) {
+                        console.log(callback);
+                    })
+                
+            }else {
+                alert("请选择发送消息的对象")
+            }
+
+        }
     </script>
 
 {% endblock %}
+
+
+
+
+
+
+

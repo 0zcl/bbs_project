@@ -117,15 +117,18 @@ body {
 .left-chat-panel{
     border: 2px solid royalblue;
     height: 480px;
-    width: 30%;
+    width: 20%;
     float: left;
+    margin-left: 10%;
 }
 
 .right-chat-panel{
     border: 2px solid #bebee1;
     height: 480px;
-    width: 70%;
+    width: 60%;
     float: left;
+    margin-left: 5px;
+
 }
 
 .chat-box-title{
@@ -138,6 +141,7 @@ body {
     border: 2px solid #77e1cf;
     height: 70%;
     width: 100%;
+    overflow: auto;  /* 给div 内容多了自动加滚动条 */
 }
 
 .chat-box-emoj{
@@ -150,4 +154,13 @@ body {
     border: 2px solid #a3ffd3;
     height: 20%;
     width: 100%;
+}
+
+.chat-box-msg textarea{
+    width: 91%;
+    height: 100%;
+}
+
+.chat-box-msg button{
+    margin-bottom: 10%;
 }
