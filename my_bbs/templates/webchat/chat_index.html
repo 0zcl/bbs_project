@@ -22,7 +22,7 @@
                             {% for friend in request.user.userprofile.friends.select_related %}
                                 <li contact-type="single" id="{{ friend.id }}" class="list-group-item"
                                     onclick="OpenChatWindow(this)">
-                                    <span class="badge">14</span>
+                                    <span class="badge hide">14</span>
                                     <span class="contact-name">{{ friend.name }}</span>
                                 </li>
                             {% endfor %}
@@ -111,8 +111,12 @@
                     }
 
                 }
-            })
-
+            });
+{#            用定时器浏览器会崩(卡)#}
+{#            setInterval(function () {#}
+{#                GetNewMsgs();#}
+{#            }, 3000)#}
+            GetNewMsgs();  // 开始取消息
         });
 
         // 点击左侧界面的好友，触发事件，打开聊天界面
@@ -146,29 +150,40 @@
             }, 500);
             console.log($(".chat-box-window")[0]);
         }
+        
         // 发送消息给好友或
         function SendMsg(msg_text) {
             var contact_id = $(".chat-box-title").attr("contact-id");
             var contact_type = $(".chat-box-title").attr("contact-type");
             if (contact_id && contact_type){
                 var msg_item = {
-                    "from": {{ request.user.userprofile.id }},
+                    "from": "{{ request.user.userprofile.id }}",
                     "to": contact_id,
                     "type": contact_type,
                     "msg": msg_text
                 };
                 
                 $.post("{% url 'send_msg' %}",
-                    msg_item,
+                    {"msg_dic": JSON.stringify(msg_item)},
                     function (callback) {
-                        console.log(callback);
+                        console.log(callback, typeof callback);
                     })
-                
             }else {
                 alert("请选择发送消息的对象")
             }
-
         }
+
+        // 用户获取消息
+        function GetNewMsgs() {
+            console.log("----getting new msg----");
+            $.getJSON("{% url 'get_new_msgs' %}",
+                function (callback) {
+                    console.log(callback, typeof callback);
+
+                    return GetNewMsgs();  //　递归
+                })
+        }
+
     </script>
 
 {% endblock %}
