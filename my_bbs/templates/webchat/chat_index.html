@@ -99,11 +99,9 @@
                 }
             });  // end set csrf
 
-
-
             // 让聊天室版块高亮
             $(".navbar-nav a[href='{{ request.path }}']").parent().addClass("active");
-
+            // 事件委托
             $("body").delegate("textarea", "keydown", function (e) {  // e==event
                 if(e.which == 13){  // 按下键的数字(e.which);13是enter键的ASCII码
                     var msg_text = $("textarea").val();
@@ -113,7 +111,7 @@
                         SendMsg(msg_text);
                         // 将发送的信息打印到自己的window界面
                         AddSendMsgIntoWindow(msg_text);
-                        $("textarea").val("");
+                        $("textarea").val("");  // 将输入框清空
                     }else {
                         alert("请输入要发送的消息")
                     }
@@ -129,7 +127,7 @@
 
         // 点击左侧界面的好友，触发事件，打开聊天界面
         function OpenChatWindow(ele) {
-            console.log($(ele));
+            // console.log($(ele));
             $(ele).addClass("active");  // 对左侧点击的好友增加高亮
             $(ele).siblings().removeClass("active");  // 将同级元素去除高亮属性
             var contact_id = $(ele).attr("id");
@@ -163,6 +161,7 @@
             }else {
                 // 如果chat_record为undefined，则下面代码无法将对话界面清空(重要)
                 $(".chat-box-window").html(chat_record);
+                console.log("haha>>", chat_record)
             }
 
         }
@@ -178,10 +177,10 @@
             $(".chat-box-window").animate({
                 scrollTop: $(".chat-box-window")[0].scrollHeight  // 每隔0.5s 自动向下滚动
             }, 500);
-            console.log($(".chat-box-window")[0]);
+            // console.log($(".chat-box-window")[0]);
         }
         
-        // 发送消息给好友或
+        // 发送消息给好友或群组
         function SendMsg(msg_text) {
             var contact_id = $(".chat-box-title").attr("contact-id");
             var contact_type = $(".chat-box-title").attr("contact-type");
@@ -190,7 +189,7 @@
                     "from": "{{ request.user.userprofile.id }}",
                     "to": contact_id,
                     "type": contact_type,
-                    "msg": msg_text
+                    "msg": msg_text  // 要发送的消息
                 };
                 
                 $.post("{% url 'send_msg' %}",
@@ -208,10 +207,48 @@
             console.log("----getting new msg----");
             $.getJSON("{% url 'get_new_msgs' %}",
                 function (callback) {
-                    console.log(callback, typeof callback);
+                    // callback是列表对象，object, 列表每个元素都是一个消息字典
+                    console.log(callback, typeof callback);  // Array [Object] object
+                    // 解析消息，用户可能收到与当前正在聊天用户的消息，也可能是其他用户发的消息
+                    ParseNewMsgs(callback);
 
                     return GetNewMsgs();  //　递归
                 })
+        }
+
+        // 解析消息，用户可能收到与当前正在聊天用户的消息，也可能是其他用户发的消息
+        function ParseNewMsgs(callback) {
+            // callback为列表形式，列表的每个元素是数据字典形式(含时间戳)
+            // 当前聊天窗口的contact-id,与聊天方式(群聊??)
+            var current_session_id = $(".chat-box-title").attr("contact-id");
+            var current_session_type = $(".chat-box-title").attr("contact-type");
+            for (var msg_item in callback){
+                // {'from': '3', 'timestamp': 1495542839.880795, 'msg': '\naaaassss', 'type': 'single', 'to': '1'}
+                console.log(">>",callback[msg_item]);
+                // console.log(">>>",callback[msg_item]["from"]);  // 这两种方式都可以
+                // console.log(">>>",callback[msg_item].from);
+                // 将数据字典渲染成html格式
+                var new_msg_ele = "<div class='msg-item'>" +
+                                        "<span style='color:red'>" + callback[msg_item]["from"] + "</span>" +
+                                        "<span>" + callback[msg_item]["timestamp"]+ "</span>" +
+                                        "<div class='msg-text'>" + callback[msg_item]["msg"] + "</div>" +
+                                    "</div>";
+                // 用户收到的是与当前正在聊天用户的消息
+                if (current_session_id==callback[msg_item]["from"] && current_session_type==callback[msg_item]["type"]){
+                    // 将消息的html元素添加到聊天窗口
+                    $(".chat-box-window").append(new_msg_ele);
+                }else {
+                    // 用户没打开消息发送者的对话框，消息暂存到内存中(全局变量中)
+                    if (typeof GLOBAL_CHAT_RECORD_DIC[callback[msg_item]["type"]][callback[msg_item]["from"]]=="undefined"){
+                        GLOBAL_CHAT_RECORD_DIC[callback[msg_item].type][callback[msg_item].from]=new_msg_ele;
+                    }else {  // 如果GLOBAL_CHAT_RECORD_DIC[current_session_type][current_session_id]为undefined
+                        GLOBAL_CHAT_RECORD_DIC[callback[msg_item].type][callback[msg_item].from]+=new_msg_ele;
+                    }
+                }
+
+            }
+
+
         }
 
     </script>
