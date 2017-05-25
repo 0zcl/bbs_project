@@ -2,6 +2,7 @@ from django.shortcuts import render,HttpResponse,HttpResponseRedirect
 from bbs import models
 # Create your views here.
 import queue,json,time
+from webchat import models as chat_models
 
 GLOBAL_MSG_QUEUES = {
 
@@ -15,7 +16,7 @@ def chat_dashboard(request):
 
 
 def send_msg(request):
-    print(request.POST)
+    print("request.POST", request.POST)
     msg_dic = request.POST.get("msg_dic")
     print(msg_dic, type(msg_dic))  # eg:{"from":"3","to":"2","type":"single","msg":"1111"} <class 'str'>
     if msg_dic:
@@ -30,6 +31,20 @@ def send_msg(request):
                 GLOBAL_MSG_QUEUES[queue_id] = queue.Queue()  # 创建队列
 
             GLOBAL_MSG_QUEUES[queue_id].put(msg_dic)  # 将消息字典(带时间戳)放进队列
+            print("全局队列>>:", GLOBAL_MSG_QUEUES)
+        else:  # 群发，则将消息字典(带时间戳)群成员各自的队列
+            # print("群发消息")
+            group_obj = chat_models.WebGroup.objects.get(id=queue_id)  # 群组对象
+            members = group_obj.members.select_related()
+            # print(">>群组成员:", members)
+            for member in members:
+                print(member.name, member.id)
+                # 如果用户队列不存在, 注意，如果id(key)对应的队列不存在，则输出None,不会曝错
+                if not GLOBAL_MSG_QUEUES.get(member.id):
+                    GLOBAL_MSG_QUEUES[member.id] = queue.Queue()  # 创建队列
+                if member.id != request.user.userprofile.id:
+                    GLOBAL_MSG_QUEUES[member.id].put(msg_dic)  # 将消息字典(带时间戳)群成员各自的队列
+
             print("全局队列>>:", GLOBAL_MSG_QUEUES)
 
     return HttpResponse("---receive msg---")

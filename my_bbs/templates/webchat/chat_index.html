@@ -22,7 +22,7 @@
                             {% for friend in request.user.userprofile.friends.select_related %}
                                 <li contact-type="single" id="{{ friend.id }}" class="list-group-item"
                                     onclick="OpenChatWindow(this)">
-                                    <span class="badge hide">14</span>
+                                    <span class="badge hide">0</span>
                                     <span class="contact-name">{{ friend.name }}</span>
                                 </li>
                             {% endfor %}
@@ -30,7 +30,15 @@
                     </div>
 
                     <div role="tabpanel" class="tab-pane" id="group">
-                        ll
+                        <ul class="list-group">
+                            {% for group in request.user.userprofile.group_members.select_related %}
+                                <li contact-type="group" id="{{ group.id }}" class="list-group-item"
+                                    onclick="OpenChatWindow(this)">
+                                    <span class="badge hide">0</span>
+                                    <span class="contact-name">{{ group.name }}</span>
+                                </li>
+                            {% endfor %}
+                        </ul>
                     </div>
                 </div>
 
@@ -100,7 +108,7 @@
             });  // end set csrf
 
             // 让聊天室版块高亮
-            $(".navbar-nav a[href='{{ request.path }}']").parent().addClass("active");
+            //$(".navbar-nav a[href='{{ request.path }}']").parent().addClass("active");
             // 事件委托
             $("body").delegate("textarea", "keydown", function (e) {  // e==event
                 if(e.which == 13){  // 按下键的数字(e.which);13是enter键的ASCII码
@@ -151,6 +159,10 @@
             // 给标题框添加 通信对象的id,通信类型(群发或单独发)
             $(".chat-box-title").attr("contact-id", contact_id);
             $(".chat-box-title").attr("contact-type", contact_type);
+
+            // 若原本是有消息数量提醒，点击后无消息数量提醒
+            $(ele).find(".badge").text(0);  // 将消息提醒量置为0
+            $(ele).find(".badge").addClass("hide");  // 隐藏
 
             // 把chat-window的html元素从全局字典中存出来
             // 第一次点击该联系人时，chat_record为undefined,因为字典的single下还没有生成id(key)对应的value
@@ -233,18 +245,32 @@
                                         "<span>" + callback[msg_item]["timestamp"]+ "</span>" +
                                         "<div class='msg-text'>" + callback[msg_item]["msg"] + "</div>" +
                                     "</div>";
+                // 如果是一对一发信息，消息接收方根据发消息方的id，将消息添加到聊天窗口
+                // 如果是群聊，消息接收方根据群的id，将消息添加到聊天窗口
+                if (callback[msg_item]["type"]=="single"){
+                    var msg_from_contact_id = callback[msg_item]["from"];
+                }else {
+                    var msg_from_contact_id = callback[msg_item]["to"];
+                }
                 // 用户收到的是与当前正在聊天用户的消息
-                if (current_session_id==callback[msg_item]["from"] && current_session_type==callback[msg_item]["type"]){
+                if (current_session_id==msg_from_contact_id && current_session_type==callback[msg_item]["type"]){
                     // 将消息的html元素添加到聊天窗口
                     $(".chat-box-window").append(new_msg_ele);
                 }else {
                     // 用户没打开消息发送者的对话框，消息暂存到内存中(全局变量中)
-                    if (typeof GLOBAL_CHAT_RECORD_DIC[callback[msg_item]["type"]][callback[msg_item]["from"]]=="undefined"){
-                        GLOBAL_CHAT_RECORD_DIC[callback[msg_item].type][callback[msg_item].from]=new_msg_ele;
+                    if (typeof GLOBAL_CHAT_RECORD_DIC[callback[msg_item]["type"]][msg_from_contact_id]=="undefined"){
+                        GLOBAL_CHAT_RECORD_DIC[callback[msg_item].type][msg_from_contact_id]=new_msg_ele;
                     }else {  // 如果GLOBAL_CHAT_RECORD_DIC[current_session_type][current_session_id]为undefined
-                        GLOBAL_CHAT_RECORD_DIC[callback[msg_item].type][callback[msg_item].from]+=new_msg_ele;
+                        GLOBAL_CHAT_RECORD_DIC[callback[msg_item].type][msg_from_contact_id]+=new_msg_ele;
                     }
                 }
+                // 新消息提醒, 下面这句代码花了我不少时间呢!
+                var contact_ele = $(".list-group li[contact-type='"+callback[msg_item].type+"'][id='"+msg_from_contact_id+"']");
+                console.log(">>>>:", contact_ele.text());
+                var current_new_msg_count = $(contact_ele).find(".badge").text();
+                console.log(">>current_new_msg_count", current_new_msg_count, typeof current_new_msg_count);
+                $(contact_ele).find(".badge").removeClass("hide");
+                $(contact_ele).find(".badge").text(parseInt(current_new_msg_count)+1);
 
             }
 
