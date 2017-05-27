@@ -10,6 +10,7 @@
             <input type="submit" value="提交" class="btn btn-success pull-right"/>
         </form>
         <!-- 上传文件 -->
+        <!-- 上传文件要加enctype="multipart/form-data" -->
         <form method="post" action="{% url 'file_upload' %}" enctype="multipart/form-data">{% csrf_token %}
             <input name="filename" type="file" />
             <input type="submit" value="上传"/>

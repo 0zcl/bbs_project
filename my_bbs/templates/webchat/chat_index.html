@@ -51,10 +51,13 @@
             <div class="chat-box-title" contact-id="" contact-type="">title</div>
 
             <div class="chat-box-window">window</div>
-            <div class="chat-box-emoj">emoj</div>
+            <div class="chat-box-emoj">
+                <span class="glyphicon glyphicon-download-alt" style="float:right;right: 50%;" onclick="FileUpload()"></span>
+                <input id="file_upload" type="file" />
+            </div>
             <div class="chat-box-msg">
                 <textarea id="msg"></textarea>
-                <button class="btn btn-success">发送</button>
+                <button class="btn btn-success" style="float:right;">发送</button>
             </div>
         </div>
         <div class="clear-both"></div>
@@ -277,6 +280,27 @@
 
         }
 
+        function FileUpload() {
+            var formData = new FormData();
+            console.log("formData:>>", formData);
+            // console.log($("#file_upload")[0].files[0]);
+            formData.append("file", $("#file_upload")[0].files[0]);
+            $.ajax({
+                url:"{% url 'webchat_file_upload' %}",  // 向后台发起请求的url
+                type:"POST",  // 向后台发起POST请求
+                data: formData,
+                // * 必须false才会避开jQuery对 formdata 的默认处理;XMLHttpRequest会对 formdata 进行正确的处理
+                processData:false,
+                contentType:false,  // 必须false才会自动加上正确的Content-Type
+                //当请求执行完成之后，自动调用，arg(参数):服务器返回的数据
+                success: function (arg) {
+                    console.log("arg>>:",arg);
+                }
+
+            }); // end ajax
+
+        }
+        
     </script>
 
 {% endblock %}

@@ -74,8 +74,21 @@ def get_new_msgs(request):  # 用户接收消息
     return HttpResponse(json.dumps(msg_list))  # 序列化，转化为json格式
 
 
+def webchat_file_upload(request):  # 处理聊天室上传文件/图片
+    print(">>web_chat_upload_file")
+    if request.method == "POST":
+        # print("request.POST", request.POST)  # <QueryDict: {}>
+        # <MultiValueDict: {'file': [<InMemoryUploadedFile: 213915683426.jpg (image/jpeg)>]}>,PS:"file"是在前端定义的
+        print("request.FILES", request.FILES)
+        # file_obj是一个文件名柄,django保存上传文件的句柄
+        # typeof(file_obj): <class 'django.core.files.uploadedfile.InMemoryUploadedFile'>
+        file_obj = request.FILES.get("file")  # (输出)print(file_obj): 213915683426.jpg
 
+        # uploads目录下原本没有file_obj.name文件，这里临上传的文件复制到uploads目录下
+        with open('uploads/webchat/%s' % file_obj.name, 'wb+') as destination:
+            for chunk in file_obj.chunks():  # chunks方法是django封装好的
+                destination.write(chunk)
 
-
+        return HttpResponse("--ajax for upload file success")
 
 
