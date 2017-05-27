@@ -3,6 +3,7 @@ from bbs import models
 # Create your views here.
 import queue,json,time
 from webchat import models as chat_models
+from django.core.cache import cache
 
 GLOBAL_MSG_QUEUES = {
 
@@ -83,12 +84,32 @@ def webchat_file_upload(request):  # 处理聊天室上传文件/图片
         # file_obj是一个文件名柄,django保存上传文件的句柄
         # typeof(file_obj): <class 'django.core.files.uploadedfile.InMemoryUploadedFile'>
         file_obj = request.FILES.get("file")  # (输出)print(file_obj): 213915683426.jpg
-
+        recv_filesize = 0
         # uploads目录下原本没有file_obj.name文件，这里临上传的文件复制到uploads目录下
-        with open('uploads/webchat/%s' % file_obj.name, 'wb+') as destination:
+        with open('uploads/webchat/%s' % file_obj.name, 'wb+') as destination:  # 如果上传相同文件会覆盖，功能待改善
             for chunk in file_obj.chunks():  # chunks方法是django封装好的
                 destination.write(chunk)
 
-        return HttpResponse("--ajax for upload file success")
+                recv_filesize += len(chunk)
+                cache.set(file_obj, recv_filesize)  # 存入缓存
+        # 前端通过定时器发起请求，请求recv_filesize，如何能让这个请求也能接收到局部变量recv_filesize??
+        # 方法一: 可设置全局字典，{"filename": recv_filesize}
+        # 方法二: django自带缓存系统cache,临时保存数据
+        print("接收到文件的大小:", recv_filesize)
+        return HttpResponse("upload file success")
 
 
+def get_file_upload_size(request):  # 获取后台接收文件的字节
+    # print("request.GET>>:", request.GET)  # <QueryDict: {'filename': ['jack.rar']}>
+    filename = request.GET.get("filename")
+    progress = cache.get(filename)  # 从缓存中取出服务端已接收的字节数
+    print("file[%s] uploading progress[%s]" % (filename, progress))
+
+    return HttpResponse(json.dumps({"recv_size": progress}))
+
+
+def delete_cache_key(request):
+    print("delete_cache_key", request.GET.get("cache_key"))
+    cache.delete(request.GET.get("cache_key"))
+
+    return HttpResponse("delete_success")
