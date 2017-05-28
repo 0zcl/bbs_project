@@ -18,6 +18,7 @@ class Article(models.Model):  # 贴子表
     pub_date = models.DateTimeField(blank=True, null=True)
     last_modify = models.DateTimeField(auto_now=True)  # 自动添加修改帖子时间
     priority = models.IntegerField(u"优先级", default=1000)  # 设置默认优先级为1000
+    # upload_to表示图片存的目录；如果uploads目录不存在，会自动创建
     head_img = models.ImageField(u"文章标题图片", upload_to="uploads")
 
     status_choices = (("draft", u"草稿"),

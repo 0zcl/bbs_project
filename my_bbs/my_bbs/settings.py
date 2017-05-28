@@ -120,8 +120,11 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.10/howto/static-files/
 
-STATIC_URL = '/static/'
+# '/static/'是一个别名，代表下面STATICFILES_DIRS匹配到的目录
+# 前端必须得用别名才好，否则后台静态文件目录名一改，前端也得改目录!!
+STATIC_URL = '/static/'  # 创建django项目时自带这句代码
 
-
-STATICFILES_DIRS = (os.path.join(BASE_DIR, "static"),
+# 要想让静态文件被找到，需配置STATICFILES_DIRS
+# 第一条找不到就找第二条，直到找到为止
+STATICFILES_DIRS = (os.path.join(BASE_DIR, "static"),  # 到static目录找静态文件
                     os.path.join(BASE_DIR, "uploads"),)
