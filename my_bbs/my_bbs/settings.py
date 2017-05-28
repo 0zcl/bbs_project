@@ -127,4 +127,5 @@ STATIC_URL = '/static/'  # 创建django项目时自带这句代码
 # 要想让静态文件被找到，需配置STATICFILES_DIRS
 # 第一条找不到就找第二条，直到找到为止
 STATICFILES_DIRS = (os.path.join(BASE_DIR, "static"),  # 到static目录找静态文件
-                    os.path.join(BASE_DIR, "uploads"),)
+                    os.path.join(BASE_DIR, "uploads"),
+                    os.path.join(BASE_DIR, "uploads/webchat"),)

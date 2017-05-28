@@ -127,7 +127,7 @@
                         // 发送消息给对方
                         SendMsg(msg_text);
                         // 将发送的信息打印到自己的window界面
-                        AddSendMsgIntoWindow(msg_text);
+                        AddSendMsgIntoWindow(msg_text, "text");  // 设定文字发送的类型为text
                         $("textarea").val("");  // 将输入框清空
                     }else {
                         alert("请输入要发送的消息")
@@ -187,12 +187,36 @@
 
         }
 
-        function AddSendMsgIntoWindow(msg_text) {
-            var new_msg_ele = "<div class='msg-item'>" +
-                                "<span>" + "{{ request.user.userprofile.name }}" + "</span>" +
-                                "<span>" + new Date().toLocaleDateString() + "</span>" +
-                                "<div class='msg-text'>" + msg_text + "</div>" +
-                            "</div>";
+        function AddSendMsgIntoWindow(msg_obj, msg_type) {
+
+            if (msg_type == "text"){  // 如果发送文字，显示文字在用户聊天窗口
+                var new_msg_ele = "<div class='msg-item'>" +
+                    "<span>" + "{{ request.user.userprofile.name }}" + "</span>" +
+                    "<span>" + new Date().toLocaleDateString() + "</span>" +
+                    "<div class='msg-text'>" + msg_obj + "</div>" +
+                "</div>";
+                    console.log(msg_obj.type);
+            }else if (msg_type.startsWith("image")){  // 如果发送图片，图片的type是image/xxx.eg:image/jpeg or image/png
+                 // 也可以用　msg_type.startsWith("image")
+                var new_msg_ele = "<div class='msg-item'>" +
+                        "<span>" + "{{ request.user.userprofile.name }}" + "</span>" +
+                        "<span>" + new Date().toLocaleDateString() + "</span>" +
+                         // 先把文件传到自己的目录下，再展示到用户的界面
+                        "<div class='msg-text'><img style='width:50%' src='"+
+                            "/static/{{ request.user.userprofile.name }}/"+ msg_obj.name +"' /></div>" +
+                    "</div>";
+            }else {  // pdf可以在线查看，docx一点击就下载
+                var new_msg_ele = "<div class='msg-item'>" +
+                        "<span>" + "{{ request.user.userprofile.name }}" + "</span>" +
+                        "<span>" + new Date().toLocaleDateString() + "</span>" +
+                         // 先把文件传到自己的目录下，再展示到用户的界面
+                        "<div class='msg-text'><a href='"+
+                            "/static/" + "{{ request.user.userprofile.name }}/"+ msg_obj.name +"' target='_blank'>" +
+                        "上传成功点我下载</a></div>" +
+                    "</div>";
+            }
+
+
             $(".chat-box-window").append(new_msg_ele);
 
             $(".chat-box-window").animate({
@@ -289,7 +313,7 @@
         function FileUpload() {
             var formData = new FormData();
             console.log("formData:>>", formData);
-            // console.log($("#file_upload")[0].files[0]);
+            console.log($("#file_upload")[0].files[0]);
             formData.append("file", $("#file_upload")[0].files[0]);
             $.ajax({
                 url:"{% url 'webchat_file_upload' %}",  // 向后台发起请求的url
@@ -319,6 +343,7 @@
                         console.log("callback:",callback,typeof callback);
                         if (file_obj.size==callback["recv_size"]){
                             clearInterval(RefreshFlieSize);  // 如果文件已发送完毕，则清除定时器
+                            AddSendMsgIntoWindow(file_obj, file_obj.type);
                             // 当发送文件A成功后，若再次发送文件A，是不会成功的。
                             // 因为后台的cache已经存有该文件A的文件对象与文件大小，故发送成功后再通过ajax请求将key-value删除
                             $.get("{% url 'delete_cache_key' %}",

@@ -4,6 +4,7 @@ from bbs import models
 import queue,json,time
 from webchat import models as chat_models
 from django.core.cache import cache
+import os
 
 GLOBAL_MSG_QUEUES = {
 
@@ -85,8 +86,13 @@ def webchat_file_upload(request):  # 处理聊天室上传文件/图片
         # typeof(file_obj): <class 'django.core.files.uploadedfile.InMemoryUploadedFile'>
         file_obj = request.FILES.get("file")  # (输出)print(file_obj): 213915683426.jpg
         recv_filesize = 0
+        user_home_idr = "uploads/webchat/%s" % request.user.userprofile.name
+        if not os.path.isdir(user_home_idr):
+            os.mkdir(user_home_idr)  # 创建目录
+
         # uploads目录下原本没有file_obj.name文件，这里临上传的文件复制到uploads目录下
-        with open('uploads/webchat/%s' % file_obj.name, 'wb+') as destination:  # 如果上传相同文件会覆盖，功能待改善
+        # 如果上传相同文件会覆盖，功能待改善
+        with open('%s/%s' % (user_home_idr, file_obj.name), 'wb+') as destination:
             for chunk in file_obj.chunks():  # chunks方法是django封装好的
                 destination.write(chunk)
 

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="BookmarkManager">
-    <bookmark url="file://$PROJECT_DIR$/templates/webchat/chat_index.html" description="console.log(callback);" line="218" />
+    <bookmark url="file://$PROJECT_DIR$/templates/webchat/chat_index.html" description="console.log(callback);" line="242" />
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e633ad51-be0b-4a08-b3ca-dc970578fec2" name="Default" comment="" />
@@ -24,51 +24,38 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="75">
-      <file leaf-file-name="chat_index.html" pinned="false" current-in-tab="false">
+      <file leaf-file-name="chat_index.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/templates/webchat/chat_index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="7521">
-              <caret line="327" column="33" lean-forward="false" selection-start-line="327" selection-start-column="33" selection-end-line="327" selection-end-column="33" />
-              <folding />
+            <state relative-caret-position="274">
+              <caret line="227" column="21" lean-forward="true" selection-start-line="227" selection-start-column="21" selection-end-line="227" selection-end-column="21" />
+              <folding>
+                <element signature="e#3032#3682#0#HTML" expanded="false" />
+                <element signature="e#3822#3962#0#HTML" expanded="false" />
+                <element signature="e#4029#4088#0#HTML" expanded="false" />
+                <element signature="e#9667#10433#0#HTML" expanded="false" />
+                <element signature="e#10483#10952#0#HTML" expanded="false" />
+                <element signature="e#11042#13871#0#HTML" expanded="false" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="img_tag.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/bbs/templatetags/img_tag.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="161">
-              <caret line="8" column="64" lean-forward="true" selection-start-line="8" selection-start-column="64" selection-end-line="8" selection-end-column="64" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="index.html" pinned="false" current-in-tab="true">
+      <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/templates/bbs/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="115">
-              <caret line="11" column="0" lean-forward="true" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
+            <state relative-caret-position="165">
+              <caret line="85" column="23" lean-forward="false" selection-start-line="85" selection-start-column="23" selection-end-line="85" selection-end-column="23" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="models.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/bbs/models.py">
+      <file leaf-file-name="page_container.css" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/static/bootstrap-3.3.7-dist/css/page_container.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="368">
-              <caret line="20" column="44" lean-forward="false" selection-start-line="20" selection-start-column="44" selection-end-line="20" selection-end-column="44" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="new_article.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/templates/bbs/new_article.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="115">
-              <caret line="5" column="24" lean-forward="false" selection-start-line="5" selection-start-column="24" selection-end-line="5" selection-end-column="24" />
+            <state relative-caret-position="271">
+              <caret line="167" column="0" lean-forward="false" selection-start-line="167" selection-start-column="0" selection-end-line="167" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -77,50 +64,9 @@
       <file leaf-file-name="settings.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/my_bbs/settings.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="72">
-              <caret line="124" column="0" lean-forward="false" selection-start-line="124" selection-start-column="0" selection-end-line="124" selection-end-column="10" />
+            <state relative-caret-position="266">
+              <caret line="130" column="63" lean-forward="false" selection-start-line="130" selection-start-column="63" selection-end-line="130" selection-end-column="63" />
               <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="urls.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/webchat/urls.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="207">
-              <caret line="10" column="43" lean-forward="false" selection-start-line="10" selection-start-column="43" selection-end-line="10" selection-end-column="43" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="urls.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/my_bbs/urls.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="414">
-              <caret line="20" column="37" lean-forward="true" selection-start-line="20" selection-start-column="37" selection-end-line="20" selection-end-column="37" />
-              <folding>
-                <element signature="e#640#681#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="views.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/bbs/views.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1311">
-              <caret line="135" column="37" lean-forward="false" selection-start-line="135" selection-start-column="6" selection-end-line="135" selection-end-column="37" />
-              <folding>
-                <element signature="e#0#22#0" expanded="true" />
-                <element signature="e#1118#1194#0" expanded="false" />
-                <element signature="e#1221#1903#0" expanded="false" />
-                <element signature="e#1946#2834#0" expanded="false" />
-                <element signature="e#2882#3246#0" expanded="false" />
-                <element signature="e#3275#3812#0" expanded="false" />
-                <element signature="e#3858#4215#0" expanded="false" />
-                <element signature="e#4248#5562#0" expanded="false" />
-              </folding>
             </state>
           </provider>
         </entry>
@@ -128,13 +74,12 @@
       <file leaf-file-name="views.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/webchat/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="874">
-              <caret line="94" column="43" lean-forward="false" selection-start-line="94" selection-start-column="43" selection-end-line="94" selection-end-column="43" />
+            <state relative-caret-position="192">
+              <caret line="68" column="14" lean-forward="true" selection-start-line="68" selection-start-column="14" selection-end-line="68" selection-end-column="14" />
               <folding>
                 <element signature="e#0#69#0" expanded="true" />
-                <element signature="e#292#476#0" expanded="false" />
-                <element signature="e#506#2125#0" expanded="false" />
-                <element signature="e#2170#3132#0" expanded="false" />
+                <element signature="e#302#486#0" expanded="false" />
+                <element signature="e#516#2135#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -171,12 +116,12 @@
         <option value="$PROJECT_DIR$/webchat/models.py" />
         <option value="$PROJECT_DIR$/templates/bbs/new_article.html" />
         <option value="$PROJECT_DIR$/static/bootstrap-3.3.7-dist/css/page_container.css" />
-        <option value="$PROJECT_DIR$/templates/webchat/chat_index.html" />
         <option value="$PROJECT_DIR$/webchat/urls.py" />
-        <option value="$PROJECT_DIR$/webchat/views.py" />
-        <option value="$PROJECT_DIR$/my_bbs/settings.py" />
         <option value="$PROJECT_DIR$/bbs/models.py" />
         <option value="$PROJECT_DIR$/templates/bbs/index.html" />
+        <option value="$PROJECT_DIR$/webchat/views.py" />
+        <option value="$PROJECT_DIR$/my_bbs/settings.py" />
+        <option value="$PROJECT_DIR$/templates/webchat/chat_index.html" />
       </list>
     </option>
   </component>
@@ -187,10 +132,9 @@
     <sorting>DEFINITION_ORDER</sorting>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="154" />
-    <option name="y" value="34" />
-    <option name="width" value="1242" />
-    <option name="height" value="772" />
+    <option name="x" value="-1" />
+    <option name="width" value="1356" />
+    <option name="height" value="766" />
   </component>
   <component name="ProjectView">
     <navigator currentView="ProjectPane" proportions="" version="1">
@@ -307,11 +251,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="templates" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="bbs" />
+              <option name="myItemId" value="static" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -328,18 +268,8 @@
               <option name="myItemId" value="static" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
-          </PATH>
-          <PATH>
             <PATH_ELEMENT>
-              <option name="myItemId" value="my_bbs" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="my_bbs" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="my_bbs" />
+              <option name="myItemId" value="bootstrap-3.3.7-dist" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -353,7 +283,29 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="bbs" />
+              <option name="myItemId" value="static" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="bootstrap-3.3.7-dist" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="css" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="my_bbs" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="my_bbs" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="my_bbs" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -686,17 +638,18 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="154" y="34" width="1242" height="772" extended-state="1" />
+    <frame x="-1" y="0" width="1356" height="766" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.20861487" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.21725732" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.43414634" sideWeight="0.16300675" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.27586207" sideWeight="0.16718027" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.31034482" sideWeight="0.7126348" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.43414634" sideWeight="0.8369932" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.27586207" sideWeight="0.8328197" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -704,7 +657,6 @@
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32692307" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3270869" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Concurrent Activities Diagram" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3284553" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.398374" sideWeight="0.49695122" order="3" side_tool="false" content_ui="tabs" />
@@ -718,74 +670,11 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="14" />
+      <option name="time" value="15" />
     </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/templates/bbs/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="69">
-          <caret line="3" column="0" lean-forward="true" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/bbs/login.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="15" lean-forward="true" selection-start-line="0" selection-start-column="15" selection-end-line="0" selection-end-column="15" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/bbs/models.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1702">
-          <caret line="74" column="19" lean-forward="false" selection-start-line="74" selection-start-column="19" selection-end-line="74" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/my_bbs/urls.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="460">
-          <caret line="22" column="32" lean-forward="true" selection-start-line="22" selection-start-column="32" selection-end-line="22" selection-end-column="32" />
-          <folding>
-            <element signature="e#640#681#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/static/bootstrap-3.3.7-dist/css/navbar-fixed-top.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="92">
-          <caret line="4" column="0" lean-forward="true" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/my_bbs/settings.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2622">
-          <caret line="114" column="0" lean-forward="false" selection-start-line="114" selection-start-column="0" selection-end-line="114" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/bbs/views.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="414">
-          <caret line="21" column="60" lean-forward="false" selection-start-line="21" selection-start-column="60" selection-end-line="21" selection-end-column="60" />
-          <folding>
-            <element signature="e#0#22#0" expanded="true" />
-            <element signature="e#1118#1194#0" expanded="false" />
-            <element signature="e#1221#1903#0" expanded="false" />
-            <element signature="e#1946#2834#0" expanded="false" />
-            <element signature="e#2882#3246#0" expanded="false" />
-            <element signature="e#3275#3812#0" expanded="false" />
-            <element signature="e#3858#4215#0" expanded="false" />
-            <element signature="e#4248#5562#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://C:/Python34/Lib/site-packages/django/http/response.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="100">
@@ -942,6 +831,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="230">
           <caret line="58" column="31" lean-forward="true" selection-start-line="58" selection-start-column="31" selection-end-line="58" selection-end-column="31" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -949,13 +839,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="299">
           <caret line="14" column="44" lean-forward="false" selection-start-line="14" selection-start-column="44" selection-end-line="14" selection-end-column="44" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/static/bootstrap-3.3.7-dist/css/page_container.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3841">
-          <caret line="167" column="0" lean-forward="false" selection-start-line="167" selection-start-column="0" selection-end-line="167" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1010,31 +894,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/templates/webchat/chat_index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="7521">
-          <caret line="327" column="33" lean-forward="false" selection-start-line="327" selection-start-column="33" selection-end-line="327" selection-end-column="33" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/webchat/views.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="874">
-          <caret line="94" column="43" lean-forward="false" selection-start-line="94" selection-start-column="43" selection-end-line="94" selection-end-column="43" />
-          <folding>
-            <element signature="e#0#69#0" expanded="true" />
-            <element signature="e#292#476#0" expanded="false" />
-            <element signature="e#506#2125#0" expanded="false" />
-            <element signature="e#2170#3132#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/bbs/templatetags/img_tag.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="161">
-          <caret line="8" column="64" lean-forward="true" selection-start-line="8" selection-start-column="64" selection-end-line="8" selection-end-column="64" />
+          <caret line="8" column="64" lean-forward="false" selection-start-line="8" selection-start-column="64" selection-end-line="8" selection-end-column="64" />
           <folding />
         </state>
       </provider>
@@ -1042,7 +905,7 @@
     <entry file="file://$PROJECT_DIR$/my_bbs/urls.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="414">
-          <caret line="20" column="37" lean-forward="true" selection-start-line="20" selection-start-column="37" selection-end-line="20" selection-end-column="37" />
+          <caret line="20" column="37" lean-forward="false" selection-start-line="20" selection-start-column="37" selection-end-line="20" selection-end-column="37" />
           <folding>
             <element signature="e#640#681#0" expanded="true" />
           </folding>
@@ -1059,17 +922,87 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/my_bbs/settings.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="72">
-          <caret line="124" column="0" lean-forward="false" selection-start-line="124" selection-start-column="0" selection-end-line="124" selection-end-column="10" />
+        <state relative-caret-position="266">
+          <caret line="130" column="63" lean-forward="false" selection-start-line="130" selection-start-column="63" selection-end-line="130" selection-end-column="63" />
           <folding />
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/uploads/webchat/ZhangChengLiang/094201798756.jpg">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/uploads/webchat/ZhangChengLiang/100904677826.jpg">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/uploads/webchat/ZhangChengLiang/213915683426.jpg">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/uploads/webchat/ZhangChengLiang/GallaryTmpFile-1467918314391.jpg">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/uploads/webchat/ZhangChengLiang/mmexport1493561826474.jpg">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/uploads/webchat/ZhangChengLiang/mmexport1493808715270.jpg">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/static/bootstrap-3.3.7-dist/css/page_container.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="271">
+          <caret line="167" column="0" lean-forward="false" selection-start-line="167" selection-start-column="0" selection-end-line="167" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/uploads/webchat/Alex Li/mmexport1493561826474.jpg">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/templates/bbs/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="115">
-          <caret line="11" column="0" lean-forward="true" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
+        <state relative-caret-position="165">
+          <caret line="85" column="23" lean-forward="false" selection-start-line="85" selection-start-column="23" selection-end-line="85" selection-end-column="23" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/webchat/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="192">
+          <caret line="68" column="14" lean-forward="true" selection-start-line="68" selection-start-column="14" selection-end-line="68" selection-end-column="14" />
+          <folding>
+            <element signature="e#0#69#0" expanded="true" />
+            <element signature="e#302#486#0" expanded="false" />
+            <element signature="e#516#2135#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/webchat/chat_index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="274">
+          <caret line="227" column="21" lean-forward="true" selection-start-line="227" selection-start-column="21" selection-end-line="227" selection-end-column="21" />
+          <folding>
+            <element signature="e#3032#3682#0#HTML" expanded="false" />
+            <element signature="e#3822#3962#0#HTML" expanded="false" />
+            <element signature="e#4029#4088#0#HTML" expanded="false" />
+            <element signature="e#9667#10433#0#HTML" expanded="false" />
+            <element signature="e#10483#10952#0#HTML" expanded="false" />
+            <element signature="e#11042#13871#0#HTML" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
