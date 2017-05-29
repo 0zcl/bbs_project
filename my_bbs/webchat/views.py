@@ -19,12 +19,21 @@ def chat_dashboard(request):
 
 def send_msg(request):
     print("request.POST", request.POST)
+    # msg_item = request.POST.get("msg_dic")
+    # 前端发送图片或文件时，{"from":"3","to":"1","type":"single","msg":""} <class 'str'>
+    # print("request>>", msg_item, type(msg_item))
+
     msg_dic = request.POST.get("msg_dic")
-    print(msg_dic, type(msg_dic))  # eg:{"from":"3","to":"2","type":"single","msg":"1111"} <class 'str'>
+    # 前端发送文字时，eg:{"from":"3","to":"1","type":"single","msg":["text","444"]} <class 'str'>
+    print(msg_dic, type(msg_dic))
     if msg_dic:
         msg_dic = json.loads(msg_dic)
-        print(msg_dic, type(msg_dic))  # {'type': 'single', 'from': '3', 'to': '1', 'msg': '3333'} <class 'dict'>
-        print(">>接收到的消息", msg_dic["msg"])  # >>接收到的消息 3333
+        # 前端发送文字时，{'to': '1', 'msg': ['text', '444'], 'from': '3', 'type': 'single'} <class 'dict'>
+        print(msg_dic, type(msg_dic))
+        print(">>接收到的消息(消息为空表示发送的是file or image)", msg_dic["msg"])  # >>接收到的消息 3333
+
+        # eg:{'from': '3', 'msg': 'GallaryTmpFile-1467918314391.jpg', 'to': '1', 'type': 'single'}
+        # print("msg_dic:", msg_dic)
         queue_id = int(msg_dic["to"])  # 接收消息的用户id
         msg_dic["timestamp"] = time.time()  # 添加时间
         if msg_dic["type"] == "single":  # 一对一发送
@@ -53,7 +62,7 @@ def send_msg(request):
 
 
 def get_new_msgs(request):  # 用户接收消息
-
+    # 从用户队列取出消息字典放入列表，并将列表转换为json格式传给前端
     if request.user.userprofile.id not in GLOBAL_MSG_QUEUES:
         print("no queue for user [%s]" % request.user.userprofile.name)
         GLOBAL_MSG_QUEUES[request.user.userprofile.id] = queue.Queue()  # 创建队列
@@ -73,18 +82,20 @@ def get_new_msgs(request):  # 用户接收消息
         except queue.Empty:  # 若队列为空，则60秒后会曝queue.Empty异常(相当在这60秒内卡住挂起)
             print("\033[41;1mno msg for [%s][%s],timeout\033[0m" % (request.user.userprofile.id,request.user))
     print(">>>msg_list", msg_list)  # msg_list为消息列表，存放未接收的消息字典
+
     return HttpResponse(json.dumps(msg_list))  # 序列化，转化为json格式
 
 
 def webchat_file_upload(request):  # 处理聊天室上传文件/图片
     print(">>web_chat_upload_file")
     if request.method == "POST":
-        # print("request.POST", request.POST)  # <QueryDict: {}>
+        print("request.POST", request.POST)  # <QueryDict: {'msg_item': ['{"from":"3","to":"1","type":"single"}']}>
         # <MultiValueDict: {'file': [<InMemoryUploadedFile: 213915683426.jpg (image/jpeg)>]}>,PS:"file"是在前端定义的
         print("request.FILES", request.FILES)
         # file_obj是一个文件名柄,django保存上传文件的句柄
         # typeof(file_obj): <class 'django.core.files.uploadedfile.InMemoryUploadedFile'>
         file_obj = request.FILES.get("file")  # (输出)print(file_obj): 213915683426.jpg
+
         recv_filesize = 0
         user_home_idr = "uploads/webchat/%s" % request.user.userprofile.name
         if not os.path.isdir(user_home_idr):

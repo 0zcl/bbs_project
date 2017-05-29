@@ -234,7 +234,7 @@
                     "from": "{{ request.user.userprofile.id }}",
                     "to": contact_id,
                     "type": contact_type,
-                    "msg": msg_text  // 要发送的消息
+                    "msg": [msg_text, "text"]  // 要发送的消息,文字类型设置为text
                 };
                 
                 $.post("{% url 'send_msg' %}",
@@ -268,16 +268,58 @@
             var current_session_id = $(".chat-box-title").attr("contact-id");
             var current_session_type = $(".chat-box-title").attr("contact-type");
             for (var msg_item in callback){
+                // callback为后台返回的列表，存在待接收的消息字典
                 // {'from': '3', 'timestamp': 1495542839.880795, 'msg': '\naaaassss', 'type': 'single', 'to': '1'}
                 console.log(">>",callback[msg_item]);
                 // console.log(">>>",callback[msg_item]["from"]);  // 这两种方式都可以
                 // console.log(">>>",callback[msg_item].from);
                 // 将数据字典渲染成html格式
-                var new_msg_ele = "<div class='msg-item'>" +
-                                        "<span style='color:red'>" + callback[msg_item]["from"] + "</span>" +
-                                        "<span>" + callback[msg_item]["timestamp"]+ "</span>" +
-                                        "<div class='msg-text'>" + callback[msg_item]["msg"] + "</div>" +
-                                    "</div>";
+
+                if (callback[msg_item]["msg"][1] == "text"){  // 如果发送文字，显示文字在用户聊天窗口
+                    var new_msg_ele = "<div class='msg-item'>" +
+                        "<span style='color:red'>" + callback[msg_item]["from"] + "</span>" +
+                        "<span>" + callback[msg_item]["timestamp"]+ "</span>" +
+                        "<div class='msg-text'>" + callback[msg_item]["msg"][0] + "</div>" +
+                    "</div>";
+
+                }else if (callback[msg_item]["msg"][1].startsWith("image")){  // 如果发送图片，图片的type是image/xxx.eg:image/jpeg or image/png
+                     // 也可以用　msg_type.startsWith("image")
+
+                    var new_msg_ele = "<div class='msg-item'>" +
+                        "<span style='color:red'>" + callback[msg_item]["from"] + "</span>" +
+                        "<span>" + callback[msg_item]["timestamp"]+ "</span>" +
+                        "<div class='msg-text'>" + callback[msg_item]["msg"][0] + "</div>" +
+                    "</div>";
+
+{#                    var new_msg_ele = "<div class='msg-item'>" +#}
+{#                            "<span>" + "{{ request.user.userprofile.name }}" + "</span>" +#}
+{#                            "<span>" + new Date().toLocaleDateString() + "</span>" +#}
+{#                             // 先把文件传到自己的目录下，再展示到用户的界面#}
+{#                            "<div class='msg-text'><img style='width:50%' src='"+#}
+{#                                "/static/{{ request.user.userprofile.name }}/"+ msg_obj.name +"' /></div>" +#}
+{#                        "</div>";#}
+                }else {  // pdf可以在线查看，docx一点击就下载
+
+                    var new_msg_ele = "<div class='msg-item'>" +
+                        "<span style='color:red'>" + callback[msg_item]["from"] + "</span>" +
+                        "<span>" + callback[msg_item]["timestamp"]+ "</span>" +
+                        "<div class='msg-text'>" + callback[msg_item]["msg"][0] + "</div>" +
+                    "</div>";
+
+{#                    var new_msg_ele = "<div class='msg-item'>" +#}
+{#                            "<span>" + "{{ request.user.userprofile.name }}" + "</span>" +#}
+{#                            "<span>" + new Date().toLocaleDateString() + "</span>" +#}
+{#                             // 先把文件传到自己的目录下，再展示到用户的界面#}
+{#                            "<div class='msg-text'><a href='"+#}
+{#                                "/static/" + "{{ request.user.userprofile.name }}/"+ msg_obj.name +"' target='_blank'>" +#}
+{#                            "上传成功点我下载</a></div>" +#}
+{#                        "</div>";#}
+                }
+
+
+
+
+
                 // 如果是一对一发信息，消息接收方根据发消息方的id，将消息添加到聊天窗口
                 // 如果是群聊，消息接收方根据群的id，将消息添加到聊天窗口
                 if (callback[msg_item]["type"]=="single"){
@@ -305,32 +347,65 @@
                 $(contact_ele).find(".badge").removeClass("hide");
                 $(contact_ele).find(".badge").text(parseInt(current_new_msg_count)+1);
 
-            }
-
-
-        }
+            }  // end for
+        }  // end ParseNewMsgs function
 
         function FileUpload() {
             var formData = new FormData();
             console.log("formData:>>", formData);
             console.log($("#file_upload")[0].files[0]);
-            formData.append("file", $("#file_upload")[0].files[0]);
-            $.ajax({
-                url:"{% url 'webchat_file_upload' %}",  // 向后台发起请求的url
-                type:"POST",  // 向后台发起POST请求
-                data: formData,
-                // 必须false才会避开jQuery对 formdata 的默认处理;XMLHttpRequest会对 formdata 进行正确的处理
-                processData:false,
-                contentType:false,  // 必须false才会自动加上正确的Content-Type
-                // 当请求执行完成之后，自动调用，arg(参数):服务器返回的数据
-                success: function (arg) {
-                    console.log("arg>>:",arg);
-                }
 
-            }); // end ajax
-            // 设置进度条，传参数是为了获取上传文件的文件大小
-            UploadProgress($("#file_upload")[0].files[0]);
-        }
+            // 发送图片及文件，接收方也能收到
+            var contact_id = $(".chat-box-title").attr("contact-id");
+            var contact_type = $(".chat-box-title").attr("contact-type");
+            if (contact_id && contact_type){
+                var msg_item = {
+                    "from": "{{ request.user.userprofile.id }}",
+                    "to": contact_id,
+                    "type": contact_type,
+                    // 这里不能用$("#file_upload")[0].files[0]，为了保持与发送文字时的一致性，将"msg"的value置为空
+                    "msg": [$("#file_upload")[0].files[0].name, $("#file_upload")[0].files[0].type]
+                };
+               　formData.append("file", $("#file_upload")[0].files[0]);  // 图片 or 文件的信息
+
+                $.ajax({
+                    url:"{% url 'webchat_file_upload' %}",  // 向后台发起请求的url
+                    type:"POST",  // 向后台发起POST请求
+                    data: formData,
+                    // 必须false才会避开jQuery对 formdata 的默认处理;XMLHttpRequest会对 formdata 进行正确的处理
+                    processData:false,
+                    contentType:false,  // 必须false才会自动加上正确的Content-Type
+                    // 当请求执行完成之后，自动调用；arg(参数):服务器返回的数据
+                    success: function (arg) {
+                        console.log("arg>>:",arg);
+
+                        if (arg == "upload file success"){
+                            // 文件上传到(发送者)用户家目录，接下来再发起ajax请求将文件(or图片)发送到接收方的界面上
+                            var formData = new FormData();
+                            // 将发送方id，接收方的id,发送类型(sigle or group?)字典发送到后台, 下面必须写json格式!!否则后台接收到到字典
+               　           // 用msg_dic是为了与发送保持一致，方便后台处理
+                            formData.append("msg_dic", JSON.stringify(msg_item));
+                            formData.append("file", $("#file_upload")[0].files[0]);  // 图片 or 文件的信息
+                            $.ajax({
+                                url:"{% url 'send_msg' %}",  // 向后台发起请求的url
+                                type:"POST",  // 向后台发起POST请求
+                                data: formData,
+                                // 必须false才会避开jQuery对 formdata 的默认处理;XMLHttpRequest会对 formdata 进行正确的处理
+                                processData:false,
+                                contentType:false,  // 必须false才会自动加上正确的Content-Type
+                                // 当请求执行完成之后，自动调用；arg(参数):服务器返回的数据
+                                success: function (arg) {
+                                    console.log("arg>>:",arg);
+                                }
+                            })
+                        }  // endif
+
+                    }  // end success function
+                }); // end ajax
+                // ajax是异步非阻塞的，不会等上面文件上传完再调用下面的方法；设置进度条，传参数是为了获取上传文件的文件大小
+                UploadProgress($("#file_upload")[0].files[0]);
+            }  // endif
+        }  // end FileUpload function
 
         function UploadProgress(file_obj) {
             // 设置定时器，每1秒向服务端发起起求，询问后端接收文件了多少字节(已经发送了多少字节)。
@@ -351,8 +426,7 @@
                                 function (callback) {
                                     console.log("delete cache_key:", callback)
                                 }
-                            )
-                        }
+                            )}
                         // 设置进度条
                         var progress_percent = (callback["recv_size"]/file_obj.size) * 100 + "%";
                         $(".progress-bar").css("width", progress_percent);
@@ -360,7 +434,7 @@
 
                     }  // end callback function
                 );  // end getJSON
-            },500)
+            },500);
         }
         
     </script>
