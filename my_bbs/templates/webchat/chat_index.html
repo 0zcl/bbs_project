@@ -203,7 +203,7 @@
                         "<span>" + new Date().toLocaleDateString() + "</span>" +
                          // 先把文件传到自己的目录下，再展示到用户的界面
                         "<div class='msg-text'><img style='width:50%' src='"+
-                            "/static/{{ request.user.userprofile.name }}/"+ msg_obj.name +"' /></div>" +
+                            "/static/{{ request.user.userprofile.id }}/"+ msg_obj.name +"' /></div>" +
                     "</div>";
             }else {  // pdf可以在线查看，docx一点击就下载
                 var new_msg_ele = "<div class='msg-item'>" +
@@ -211,7 +211,7 @@
                         "<span>" + new Date().toLocaleDateString() + "</span>" +
                          // 先把文件传到自己的目录下，再展示到用户的界面
                         "<div class='msg-text'><a href='"+
-                            "/static/" + "{{ request.user.userprofile.name }}/"+ msg_obj.name +"' target='_blank'>" +
+                            "/static/" + "{{ request.user.userprofile.id }}/"+ msg_obj.name +"' target='_blank'>" +
                         "上传成功点我下载</a></div>" +
                     "</div>";
             }
@@ -273,52 +273,39 @@
                 console.log(">>",callback[msg_item]);
                 // console.log(">>>",callback[msg_item]["from"]);  // 这两种方式都可以
                 // console.log(">>>",callback[msg_item].from);
+
                 // 将数据字典渲染成html格式
-
-                if (callback[msg_item]["msg"][1] == "text"){  // 如果发送文字，显示文字在用户聊天窗口
+                // 根据收到消息的type不同(文字/图片/文件)，进行相应的渲染
+                if (callback[msg_item]["msg"][1] == "text"){
+                    // 如果发送文字，显示文字在用户聊天窗口
                     var new_msg_ele = "<div class='msg-item'>" +
                         "<span style='color:red'>" + callback[msg_item]["from"] + "</span>" +
                         "<span>" + callback[msg_item]["timestamp"]+ "</span>" +
                         "<div class='msg-text'>" + callback[msg_item]["msg"][0] + "</div>" +
                     "</div>";
-
-                }else if (callback[msg_item]["msg"][1].startsWith("image")){  // 如果发送图片，图片的type是image/xxx.eg:image/jpeg or image/png
+                // 如果发送图片，图片的type是image/xxx.eg:image/jpeg or image/png
+                }else if (callback[msg_item]["msg"][1].startsWith("image")){
                      // 也可以用　msg_type.startsWith("image")
-
                     var new_msg_ele = "<div class='msg-item'>" +
                         "<span style='color:red'>" + callback[msg_item]["from"] + "</span>" +
                         "<span>" + callback[msg_item]["timestamp"]+ "</span>" +
-                        "<div class='msg-text'>" + callback[msg_item]["msg"][0] + "</div>" +
+                        // callback[msg_item]["msg"][0]为图片名
+                        "<div class='msg-text'><img style='width:50%' src='" +
+                            // 这里前端似乎无法，通过用户id，获取用户名，因此我把用户的家目录名改为用户的id
+                            "/static/" + callback[msg_item]["from"] + "/" + callback[msg_item]["msg"][0] + "' /></div>" +
                     "</div>";
 
-{#                    var new_msg_ele = "<div class='msg-item'>" +#}
-{#                            "<span>" + "{{ request.user.userprofile.name }}" + "</span>" +#}
-{#                            "<span>" + new Date().toLocaleDateString() + "</span>" +#}
-{#                             // 先把文件传到自己的目录下，再展示到用户的界面#}
-{#                            "<div class='msg-text'><img style='width:50%' src='"+#}
-{#                                "/static/{{ request.user.userprofile.name }}/"+ msg_obj.name +"' /></div>" +#}
-{#                        "</div>";#}
                 }else {  // pdf可以在线查看，docx一点击就下载
 
                     var new_msg_ele = "<div class='msg-item'>" +
                         "<span style='color:red'>" + callback[msg_item]["from"] + "</span>" +
-                        "<span>" + callback[msg_item]["timestamp"]+ "</span>" +
-                        "<div class='msg-text'>" + callback[msg_item]["msg"][0] + "</div>" +
+                        "<span>" + callback[msg_item]["timestamp"] + "</span>" +
+                        // callback[msg_item]["msg"][0]为文件名
+                        "<div class='msg-text'><a href='" +
+                            "/static/" + callback[msg_item]["from"] + "/" + callback[msg_item]["msg"][0] +
+                            "' target='_blank'>" + "上传成功点我下载</a></div>" +
                     "</div>";
-
-{#                    var new_msg_ele = "<div class='msg-item'>" +#}
-{#                            "<span>" + "{{ request.user.userprofile.name }}" + "</span>" +#}
-{#                            "<span>" + new Date().toLocaleDateString() + "</span>" +#}
-{#                             // 先把文件传到自己的目录下，再展示到用户的界面#}
-{#                            "<div class='msg-text'><a href='"+#}
-{#                                "/static/" + "{{ request.user.userprofile.name }}/"+ msg_obj.name +"' target='_blank'>" +#}
-{#                            "上传成功点我下载</a></div>" +#}
-{#                        "</div>";#}
                 }
-
-
-
-
 
                 // 如果是一对一发信息，消息接收方根据发消息方的id，将消息添加到聊天窗口
                 // 如果是群聊，消息接收方根据群的id，将消息添加到聊天窗口
@@ -331,6 +318,11 @@
                 if (current_session_id==msg_from_contact_id && current_session_type==callback[msg_item]["type"]){
                     // 将消息的html元素添加到聊天窗口
                     $(".chat-box-window").append(new_msg_ele);
+                    // 设置定时器，使接收消息方界面自动向下滚动
+                    $(".chat-box-window").animate({
+                        scrollTop: $(".chat-box-window")[0].scrollHeight  // 每隔0.5s 自动向下滚动
+                    }, 500);
+
                 }else {
                     // 用户没打开消息发送者的对话框，消息暂存到内存中(全局变量中)
                     if (typeof GLOBAL_CHAT_RECORD_DIC[callback[msg_item]["type"]][msg_from_contact_id]=="undefined"){

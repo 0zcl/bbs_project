@@ -97,7 +97,8 @@ def webchat_file_upload(request):  # 处理聊天室上传文件/图片
         file_obj = request.FILES.get("file")  # (输出)print(file_obj): 213915683426.jpg
 
         recv_filesize = 0
-        user_home_idr = "uploads/webchat/%s" % request.user.userprofile.name
+        # 用户的家目录名，为用户的id
+        user_home_idr = "uploads/webchat/%s" % request.user.userprofile.id
         if not os.path.isdir(user_home_idr):
             os.mkdir(user_home_idr)  # 创建目录
 
