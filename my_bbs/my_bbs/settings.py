@@ -41,6 +41,10 @@ INSTALLED_APPS = [
     'webchat',
 ]
 
+# 加上这句代码，关闭浏览器后需重新登陆
+# 不加上这句代码的情况: A用户已经登陆了，然后关闭浏览器(未退出登陆)，再次打开浏览器，进入项目网址，发现仍是登陆状态
+SESSION_EXPIRE_AT_BROWSER_CLOSE = True
+
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
