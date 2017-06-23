@@ -80,6 +80,9 @@ WSGI_APPLICATION = 'my_bbs.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/1.10/ref/settings/#databases
 
+
+# 默认使用sqlite
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
@@ -87,6 +90,21 @@ DATABASES = {
     }
 }
 
+
+# 可使用以下配置连接本地的mysql数据库，需先创建mybbs数据库并在__init__.py下添加配置
+# 由于之前已经将数据创建在默认的sqlite了，为了偷懒，我还是用默认的sqlite
+"""
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'mybbs',
+        'USER': 'root',
+        'PASSWORD': 'root',
+        'HOST': '127.0.0.1',
+        'PORT': '3306',
+    }
+}
+"""
 
 # Password validation
 # https://docs.djangoproject.com/en/1.10/ref/settings/#auth-password-validators

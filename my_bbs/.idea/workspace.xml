@@ -25,11 +25,21 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="75">
-      <file leaf-file-name="base.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/templates/base.html">
+      <file leaf-file-name="__init__.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/bbs/__init__.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1334">
-              <caret line="58" column="31" lean-forward="false" selection-start-line="58" selection-start-column="31" selection-end-line="58" selection-end-column="31" />
+            <state relative-caret-position="0">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="__init__.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/my_bbs/__init__.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="69">
+              <caret line="3" column="0" lean-forward="true" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -38,8 +48,8 @@
       <file leaf-file-name="models.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/bbs/models.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1309">
-              <caret line="69" column="29" lean-forward="true" selection-start-line="69" selection-start-column="29" selection-end-line="69" selection-end-column="29" />
+            <state relative-caret-position="429">
+              <caret line="69" column="29" lean-forward="false" selection-start-line="69" selection-start-column="29" selection-end-line="69" selection-end-column="29" />
               <folding />
             </state>
           </provider>
@@ -48,7 +58,7 @@
       <file leaf-file-name="views.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/bbs/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-233">
+            <state relative-caret-position="1265">
               <caret line="139" column="21" lean-forward="false" selection-start-line="139" selection-start-column="21" selection-end-line="139" selection-end-column="21" />
               <folding>
                 <element signature="e#1118#1194#0" expanded="false" />
@@ -66,30 +76,18 @@
       <file leaf-file-name="chat_index.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/templates/webchat/chat_index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="216">
-              <caret line="39" column="40" lean-forward="true" selection-start-line="39" selection-start-column="40" selection-end-line="39" selection-end-column="40" />
-              <folding>
-                <element signature="e#3032#3682#0#HTML" expanded="false" />
-                <element signature="e#3822#3962#0#HTML" expanded="false" />
-                <element signature="e#4029#4088#0#HTML" expanded="false" />
-                <element signature="e#4129#5508#0#HTML" expanded="false" />
-                <element signature="e#5582#7598#0#HTML" expanded="false" />
-                <element signature="e#7657#9596#0#HTML" expanded="false" />
-                <element signature="e#9663#10451#0#HTML" expanded="false" />
-                <element signature="e#10501#10970#0#HTML" expanded="false" />
-                <element signature="e#11060#15710#0#HTML" expanded="false" />
-                <element signature="e#15772#18692#0#HTML" expanded="false" />
-                <element signature="e#18764#20374#0#HTML" expanded="false" />
-              </folding>
+            <state relative-caret-position="-1564">
+              <caret line="174" column="0" lean-forward="true" selection-start-line="174" selection-start-column="0" selection-end-line="174" selection-end-column="0" />
+              <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="settings.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="settings.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/my_bbs/settings.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="138">
-              <caret line="42" column="0" lean-forward="true" selection-start-line="42" selection-start-column="0" selection-end-line="42" selection-end-column="0" />
+            <state relative-caret-position="623">
+              <caret line="107" column="0" lean-forward="true" selection-start-line="107" selection-start-column="0" selection-end-line="107" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -98,7 +96,7 @@
       <file leaf-file-name="tests.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/webchat/tests.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="161">
+            <state relative-caret-position="138">
               <caret line="7" column="0" lean-forward="true" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
               <folding>
                 <element signature="e#0#32#0" expanded="true" />
@@ -120,17 +118,17 @@
       <file leaf-file-name="models.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/webchat/models.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="150">
-              <caret line="9" column="30" lean-forward="true" selection-start-line="9" selection-start-column="30" selection-end-line="9" selection-end-column="30" />
+            <state relative-caret-position="184">
+              <caret line="9" column="30" lean-forward="false" selection-start-line="9" selection-start-column="30" selection-end-line="9" selection-end-column="30" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="views.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="views.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/webchat/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="205">
+            <state relative-caret-position="1794">
               <caret line="84" column="0" lean-forward="true" selection-start-line="84" selection-start-column="0" selection-end-line="84" selection-end-column="0" />
               <folding>
                 <element signature="e#0#69#0" expanded="true" />
@@ -178,8 +176,10 @@
         <option value="$PROJECT_DIR$/templates/webchat/chat_index.html" />
         <option value="$PROJECT_DIR$/uploads/webchat/1/alex" />
         <option value="$PROJECT_DIR$/uploads/webchat/3/zcl" />
-        <option value="$PROJECT_DIR$/my_bbs/settings.py" />
         <option value="$PROJECT_DIR$/webchat/tests.py" />
+        <option value="$PROJECT_DIR$/bbs/__init__.py" />
+        <option value="$PROJECT_DIR$/my_bbs/__init__.py" />
+        <option value="$PROJECT_DIR$/my_bbs/settings.py" />
       </list>
     </option>
   </component>
@@ -190,10 +190,10 @@
     <sorting>DEFINITION_ORDER</sorting>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="37" />
-    <option name="y" value="28" />
+    <option name="x" value="14" />
+    <option name="y" value="72" />
     <option name="width" value="1370" />
-    <option name="height" value="733" />
+    <option name="height" value="658" />
   </component>
   <component name="ProjectView">
     <navigator currentView="ProjectPane" proportions="" version="1">
@@ -210,8 +210,8 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scratches" />
       <pane id="Scope" />
+      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -248,6 +248,20 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
+              <option name="myItemId" value="uploads" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="my_bbs" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="my_bbs" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
               <option name="myItemId" value="templates" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
@@ -267,6 +281,24 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="webchat" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="my_bbs" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="my_bbs" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="templates" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="bbs" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -648,28 +680,28 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="37" y="28" width="1370" height="733" extended-state="1" />
-    <editor active="false" />
+    <frame x="14" y="72" width="1370" height="658" extended-state="0" />
+    <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.16920732" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.17835365" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3402778" sideWeight="0.19054878" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.44510978" sideWeight="0.20884146" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3263889" sideWeight="0.49390244" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3402778" sideWeight="0.8094512" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.44510978" sideWeight="0.79115856" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.398374" sideWeight="0.49695122" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3263889" sideWeight="0.49390244" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.6308943" sideWeight="0.7042683" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Concurrent Activities Diagram" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3284553" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.398374" sideWeight="0.49695122" order="3" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -685,15 +717,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://C:/Python34/Lib/site-packages/django/utils/safestring.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="424">
-          <caret line="131" column="26" lean-forward="true" selection-start-line="131" selection-start-column="26" selection-end-line="131" selection-end-column="26" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/uploads/20141222_100638_I1008Ul.jpg" />
     <entry file="file://$PROJECT_DIR$/uploads/20141222_100638.jpg" />
     <entry file="file://$PROJECT_DIR$/uploads/20150223_161406.jpg" />
     <entry file="file://$PROJECT_DIR$/uploads/075316948958_txpo2Hg.jpg" />
@@ -811,9 +834,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2024">
           <caret line="99" column="39" lean-forward="false" selection-start-line="99" selection-start-column="39" selection-end-line="99" selection-end-column="39" />
-          <folding>
-            <element signature="n#if#0;n#!!top" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -821,7 +841,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="230">
           <caret line="11" column="36" lean-forward="false" selection-start-line="11" selection-start-column="36" selection-end-line="11" selection-end-column="36" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -843,9 +862,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="414">
           <caret line="20" column="37" lean-forward="false" selection-start-line="20" selection-start-column="37" selection-end-line="20" selection-end-column="37" />
-          <folding>
-            <element signature="e#640#681#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -860,7 +876,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1955">
           <caret line="85" column="23" lean-forward="false" selection-start-line="85" selection-start-column="23" selection-end-line="85" selection-end-column="23" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -913,61 +928,24 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/my_bbs/settings.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="138">
-          <caret line="42" column="0" lean-forward="true" selection-start-line="42" selection-start-column="0" selection-end-line="42" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/webchat/chat_index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="216">
-          <caret line="39" column="40" lean-forward="true" selection-start-line="39" selection-start-column="40" selection-end-line="39" selection-end-column="40" />
-          <folding>
-            <element signature="e#3032#3682#0#HTML" expanded="false" />
-            <element signature="e#3822#3962#0#HTML" expanded="false" />
-            <element signature="e#4029#4088#0#HTML" expanded="false" />
-            <element signature="e#4129#5508#0#HTML" expanded="false" />
-            <element signature="e#5582#7598#0#HTML" expanded="false" />
-            <element signature="e#7657#9596#0#HTML" expanded="false" />
-            <element signature="e#9663#10451#0#HTML" expanded="false" />
-            <element signature="e#10501#10970#0#HTML" expanded="false" />
-            <element signature="e#11060#15710#0#HTML" expanded="false" />
-            <element signature="e#15772#18692#0#HTML" expanded="false" />
-            <element signature="e#18764#20374#0#HTML" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/manage.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="230">
           <caret line="11" column="33" lean-forward="true" selection-start-line="11" selection-start-column="33" selection-end-line="11" selection-end-column="33" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/webchat/models.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="150">
-          <caret line="9" column="30" lean-forward="true" selection-start-line="9" selection-start-column="30" selection-end-line="9" selection-end-column="30" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/bbs/models.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1309">
-          <caret line="69" column="29" lean-forward="true" selection-start-line="69" selection-start-column="29" selection-end-line="69" selection-end-column="29" />
+        <state relative-caret-position="184">
+          <caret line="9" column="30" lean-forward="false" selection-start-line="9" selection-start-column="30" selection-end-line="9" selection-end-column="30" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/bbs/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-233">
+        <state relative-caret-position="1265">
           <caret line="139" column="21" lean-forward="false" selection-start-line="139" selection-start-column="21" selection-end-line="139" selection-end-column="21" />
           <folding>
             <element signature="e#1118#1194#0" expanded="false" />
@@ -983,7 +961,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/webchat/tests.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="161">
+        <state relative-caret-position="138">
           <caret line="7" column="0" lean-forward="true" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
           <folding>
             <element signature="e#0#32#0" expanded="true" />
@@ -993,12 +971,52 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/webchat/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="205">
+        <state relative-caret-position="1794">
           <caret line="84" column="0" lean-forward="true" selection-start-line="84" selection-start-column="0" selection-end-line="84" selection-end-column="0" />
           <folding>
             <element signature="e#0#69#0" expanded="true" />
             <element signature="e#302#486#0" expanded="false" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/webchat/chat_index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1564">
+          <caret line="174" column="0" lean-forward="true" selection-start-line="174" selection-start-column="0" selection-end-line="174" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/bbs/models.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="429">
+          <caret line="69" column="29" lean-forward="false" selection-start-line="69" selection-start-column="29" selection-end-line="69" selection-end-column="29" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/bbs/__init__.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/my_bbs/__init__.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="69">
+          <caret line="3" column="0" lean-forward="true" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/my_bbs/settings.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="623">
+          <caret line="107" column="0" lean-forward="true" selection-start-line="107" selection-start-column="0" selection-end-line="107" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
