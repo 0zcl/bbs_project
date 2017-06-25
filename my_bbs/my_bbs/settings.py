@@ -53,6 +53,8 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    #　激活自定义的中间件
+    'webchat.custom_middleware.MyCustomMiddleWare',
 ]
 
 ROOT_URLCONF = 'my_bbs.urls'
