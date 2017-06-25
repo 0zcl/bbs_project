@@ -18,6 +18,9 @@
     <!-- Custom styles for this template -->
     <link href="/static/bootstrap-3.3.7-dist/css/navbar-fixed-top.css" rel="stylesheet">
 
+    <!-- 引入emoji的css样式 -->
+    <link href="/static/plugins/emojify.js-master/dist/css/basic/emojify.min.css" rel="stylesheet">
+
   </head>
 
   <body> {% csrf_token %}  <!-- 防止CSRF攻击 -->
@@ -94,6 +97,10 @@
     <!-- Placed at the end of the document so the pages load faster -->
     <script src="/static/bootstrap-3.3.7-dist/js/jquery-3.1.1.min.js"></script>
     <script src="/static/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+
+    <!-- 引用emoji的JS -->
+    <script src="/static/plugins/emojify.js-master/dist/js/emojify.js"></script>
+
 
   {% block bottom-js %}  <!-- 其它子页面可替换block内容，从而写js代码 -->
 
